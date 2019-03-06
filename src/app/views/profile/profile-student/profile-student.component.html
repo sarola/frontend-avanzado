@@ -1,0 +1,160 @@
+
+<div id="contenido">
+<div class="float-left"  id="foto-perfil">
+<div>
+<img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{userProfile.avatar_name}}" />
+</div>
+<div class="text-center pr-5">
+{{userProfile.name + " " + userProfile.surname}}
+</div>
+</div>
+
+<section id="datosPersonales" class="float-left">
+	<table>
+		
+		<tbody>
+        <tr>
+          <th>Email</th>
+            <td>{{userProfile.email}}</td>
+            
+        </tr>
+        <tr>
+          <th>Fecha de nacimiento</th>
+            <td>{{userProfile.fecha_nacimiento}}</td>
+           
+        </tr>
+        <tr>
+          <th>Tel&eacute;fono </th>
+            <td>{{userProfile.telefono}}</td>            
+        </tr>
+        <tr>
+          <th>NIF/NIE</th>
+            <td>{{userProfile.nif}}</td>
+          
+        </tr>
+        <tr>
+          <th>Permisos de conducir</th>
+            <td>{{userProfile.permisos_conducir.join(', ')}}</td>
+            
+        </tr>
+          <tr>
+          <th>Direccion</th>
+            <td>{{userProfile.direccion}}</td>
+            
+        </tr>
+
+    </tbody>
+
+			
+</table>
+    <a [routerLink]="['/admin/profile/profile-student', userProfile.id]">Modificar</a>
+</section>
+<div id="otra_info" class="float-left">
+	<form>
+	<div class="float-left">
+	<label for="about-me">Acerca de mi...</label><br />
+	<textarea readonly="true" id="about-me" name="about-me">{{userProfile.about_me}}</textarea>
+	</div>
+	<div class="float-left"> 
+	<label for="other">Otras competencias</label> <br />
+
+	<textarea readonly="true" id="other" name="other">{{userProfile.other_competency}}</textarea>
+	</div>
+
+
+	</form>
+</div>
+
+<section style="clear:both;padding-bottom:4em;"></section>
+
+<h2>Formaci&oacute;n acad&eacute;mica</h2>
+<section id="formacion_academica">
+<table class="table table-bordered table-striped">
+	<thead class="thead-light">
+		<th>Nivel</th>
+		<th>T&iacute;tulo</th>
+		<th>Centro</th>
+		<th>Fecha</th>
+		<th>Certificado</th>
+	</thead>
+	<tbody>
+	 
+	 <tr  *ngFor="let estudio of userProfile.studies">
+        <td>{{estudio.level}}</td>
+        <td>{{estudio.titulo}}</td>
+        <td>{{estudio.institution}}</td>
+        <td>{{estudio.date}}</td>
+        <td>{{estudio.certificate ? 'Si' : ''}}</td>
+
+      </tr>
+		
+	</tbody>
+</table>
+</section>
+
+<h2>Experiencia laboral</h2>
+<section id="experiencia_laboral">
+<table class="table table-bordered table-striped">
+	<thead class="thead-light">
+		<th>Empresa</th>
+		<th>Puesto</th>
+		<th>Fechas</th>
+		
+	</thead>
+	<tbody>
+	 
+	 <tr  *ngFor="let trabajo of userProfile.experiences">
+        <td>{{trabajo.company}}</td>
+        <td>{{trabajo.job}}</td>
+        <td>{{trabajo.dates}}</td>
+
+      </tr>
+		
+	</tbody>
+</table>
+</section>
+
+<h2>Idiomas</h2>
+<section id="experiencia_laboral">
+<table class="table table-bordered table-striped">
+	<thead class="thead-light">
+		<th>Nivel</th>
+		<th>Idioma</th>
+		<th>Fecha</th>
+		
+	</thead>
+	<tbody>
+	 
+	 <tr  *ngFor="let idioma of userProfile.languages">
+        <td>{{idioma.level}}</td>
+        <td>{{idioma.language}}</td>
+        <td>{{idioma.date}}</td>
+
+      </tr>
+		
+	</tbody>
+</table>
+</section>
+
+</div>
+<!-- •	Datos Personales: ◦ Nombre y apellidos ◦ Correo electrónico.
+
+•	Formación Académica (una tabla resumen en la que cada fila contendrá la siguiente información):
+◦ Nivel, con uno de los siguientes dos valores:
+▪ Ciclo Formativo (Grado superior, Grado medio o Formación Básica).
+▪ Universidad (Grado, Diplomado, Licenciado/Ingeniero, Máster, Doctorado).
+◦ Título (El título académico que tiene), algunos ejemplos:
+▪ Nivel (Ciclo formativo) - Desarrollo de Aplicaciones Web.
+▪ Nivel (Universidad) - Ingeniero en Informática
+◦ Centro (Nombre del IES)
+◦ Fecha
+◦ Certificado (Documento con el documento del título o certificado).
+•	Experiencia Laboral (una tabla resumen en la que cada fila contendrá la siguiente información):
+◦ Empresa
+◦ Puesto
+◦ Fechas
+•	Idiomas (una tabla resumen en la que cada fila contendrá la siguiente información):
+◦ Nivel (A1, A2, B1, B2, C1, C2).
+◦ Idioma.
+◦ Fecha.
+ -->
