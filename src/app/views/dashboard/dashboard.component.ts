@@ -17,21 +17,13 @@ export class DashboardComponent implements OnInit {
     userProfile:any;
     userRol : string;
     constructor(private router: Router, private route: ActivatedRoute) {
-        // this.currentUserSubscription = this.signinService.currentUser.subscribe(user => {
-        //     this.currentUser = user;
-        // });
 
         this.userProfile = JSON.parse(localStorage.getItem("userProfile"));
          this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-         console.log("userProfile: " + JSON.stringify(this.userProfile));
          this.userRol = this.userProfile.roles[0].value;
-         console.log("rol: " + this.userRol);
-         
-         //console.log(this.userProfile.roles);
     }
 
     ngOnInit() {
-       
     }
 
   

@@ -20,14 +20,15 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'; */
 // SERVICES
 import { AppConfirmService } from './services/app-confirm/app-confirm.service';
 import { AppComfirmComponent } from './services/app-confirm/app-confirm.component';
+import {MenuComponent} from '../views/menu/menu.component';
 
-const classesToInclude = [AppComfirmComponent, ProfileStudentComponent, ProfileCompanyComponent];
+const classesToInclude = [AppComfirmComponent, ProfileStudentComponent, ProfileCompanyComponent, MenuComponent];
 
 @NgModule({
   imports: [CommonModule, FormsModule, RouterModule, ReactiveFormsModule],
 
   providers: [AppConfirmService, AlertService],
-  entryComponents: [AppComfirmComponent, ProfileStudentComponent, ProfileCompanyComponent],
+  entryComponents: [AppComfirmComponent, ProfileStudentComponent, ProfileCompanyComponent, MenuComponent],
   declarations: classesToInclude,
   exports: classesToInclude
 })

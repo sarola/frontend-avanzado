@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {OffersService} from '../../shared/services/offers.service';
 
 @Component({
   selector: 'app-offers',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OffersComponent implements OnInit {
 
-  constructor() { }
+  currentUser: {username, token};
+  userProfile:any;
+  userRol : string;
+  constructor(private router: Router, private route: ActivatedRoute, private offersService: OffersService) {
+    this.userProfile = JSON.parse(localStorage.getItem("userProfile"));
+    this.userRol = this.userProfile.roles[0].value;
+    this.offersService.getOffers().subscribe(x => {
+      localStorage.setItem('ofertas', JSON.stringify(x));
+
+    });
+
+  }
 
   ngOnInit() {
+
   }
 
 }

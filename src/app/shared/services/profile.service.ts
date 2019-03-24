@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { AppSettings } from '../app.settings';
 /* import { UserOptions } from '../models/user'; */
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { of, Observable, BehaviorSubject } from 'rxjs';
-import {map} from 'rxjs/operators';
+import {first, map} from 'rxjs/operators';
 import {User} from '../models/user';
+
 /* import { AppStore } from '../states/store.inteface';
 import { Store } from '@ngrx/store';
 import * as UserActions from 'app/shared/states/user/actions';
 import { User } from 'app/shared/models/user'; */
+import {InMemoryDataService} from './inmemory-db.service';
+
 
 @Injectable()
 export class ProfileService {
-      currentUserSubject:  BehaviorSubject<{id, username, token}>;
 
-  private mockUserStudent = {
+    private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    private mockUserStudent = {
     uid: 'pepegarcia',
     name: 'Pepe',
     surname: 'García',
@@ -123,6 +128,7 @@ export class ProfileService {
     }
   } as any /* UserOptions */;
 
+ 
 
    private mockUser = {
     uid: 'ajvazquez',
@@ -235,172 +241,89 @@ export class ProfileService {
 
 
 
+ getUsers(){
+   return this.http.get<any[]> (AppSettings.API_ENDPOINT_USERS).pipe(map(items => {
 
-private userProba = 
-{
-
-
-
-  id: 1,
-    name: "pepa",
-    surname: "perez",
-    email: "usuario1@mail.com",
-    roles: [AppSettings.STUDENT_ROL],
-    avatar_name: "assets/img/perfil.png",
-    fecha_nacimiento: "01/01/2001",
-    telefono:"678678678",
-    nif:"55224411V",
-    permisos_conducir:["B", "A1"],
-    about_me: "algo sobre mi",
-    other_competency: "otras competencias",
-    direccion: "Pedriñas 9",
-
-     studies: 
-    
-    [
-      {
-          uid: 0,
-            level: "FP",
-            title: "DAM",
-            institution: "Leliadoura",
-            date: "2014",
-            certificate: true
-      },
-      {
-          uid: 1,
-            level: "FP",
-            title: "ASIR",
-            institution: "Leliadoura",
-            date: "2016",
-            certificate: false
-
-      }
-    ],
-    experiences:[
-    {
-      uid:0,
-      company:"Indra",
-      job:"Programador",
-      dates:"01/01/2014 - 01/01/2015"
-
-
-    },
-    {
-       uid:0,
-      company:"Inditex",
-      job:"Programador",
-      dates:"01/03/2015 - 01/01/2016"
-
-    }
-
-    ],
-    languages:[
-    {
-      uid:0,
-      level:"C1",
-      language:"Inglés",
-      date:"01/01/2015"
-
-
-    },
-    {
-      uid:0,
-      level:"C2",
-      language:"Francés",
-      date:"01/01/2017"
-
-    }
-
-    ]
-   
-          
-  
- } as any;
-
-
-
-private userProba2 = 
-{
-
-
-
-  id: 2,
-    name: "pedro",
-    surname: "paz",
-    email: "usuario2@mail.com",
-    roles: [AppSettings.COMPANY_ROL],
-    avatar_name: "assets/img/perfil.png",
-    fecha_nacimiento: "01/01/2001",
-    nif:"55287541K",
-    telefono:"654654654",
-    permisos_conducir:["B", "A1"],
-    about_me: "algo sobre mi",
-    other_competency: "otras competencias",
-    direccion: "Vilar 7",
-    studies: 
-    [
-      {
-          uid: 0,
-            level: "FP",
-            title: "DAM",
-            institution: "Leliadoura",
-            date: "2014",
-            certificate: false
-      },
-      {
-          uid: 1,
-            level: "FP",
-            title: "ASIR",
-            institution: "Leliadoura",
-            date: "2016",
-            certificate: false
-
-      }
-    ]
-   
-          
-  
- } as any;
-
- private usersProba = [this.userProba, this.userProba2];
-
- loadUsersProba(){
-   return of (this.usersProba as User[]);
+     return items;
+   }));
  }
 
-loadUserProba(){
-  return of (this.userProba as User);
-}
-/*Nombre y apellidos ◦ Correo electrónico.
-◦ Fecha de nacimiento.
-◦ Teléfono de contacto.
-◦ NIF/NIE.
-◦ Sobre mí (una breve descripción).
-◦ Otras competencias (una breve descripción).
-◦ Permisos de conducir (un breve texto).
-◦ Dirección (un breve texto).
-•  Formación Académica (una tabla resumen en la que cada fila contendrá la siguiente información):
-◦ Nivel, con uno de los siguientes dos valores:
-▪ Ciclo Formativo (Grado superior, Grado medio o Formación Básica).
-▪ Universidad (Grado, Diplomado, Licenciado/Ingeniero, Máster, Doctorado).
-◦ Título (El título académico que tiene), algunos ejemplos:
-▪ Nivel (Ciclo formativo) - Desarrollo de Aplicaciones Web.
-▪ Nivel (Universidad) - Ingeniero en Informática
-◦ Centro (Nombre del IES)
-◦ Fecha
-◦ Certificado (Documento con el documento del título o certificado).
-•  Experiencia Laboral (una tabla resumen en la que cada fila contendrá la siguiente información):
-◦ Empresa
-◦ Puesto
-◦ Fechas
-•  Idiomas (una tabla resumen en la que cada fila contendrá la siguiente información):
-◦ Nivel (A1, A2, B1, B2, C1, C2).
-◦ Idioma.
-◦ Fecha.
-*/
+
+  getIdiomas() {
+    return this.http.get<any[]> (AppSettings.API_ENDPOINT_IDIOMAS).pipe(map(items => {
+
+      return items;
+    }));
+  }
+  getNivelesIdiomas() {
+    return this.http.get<any[]> (AppSettings.API_ENDPOINT_NIVELES_IDIOMAS).pipe(map(items => {
+
+      return items;
+    }));
+  }
+  getProvincias() {
+    return this.http.get<any[]> (AppSettings.API_ENDPOINT_PROVINCIAS).pipe(map(items => {
+
+      return items;
+    }));
+  }
+  getMunicipios() {
+    return this.http.get<any[]> (AppSettings.API_ENDPOINT_MUNICIPIOS).pipe(map(items => {
+
+      return items;
+    }));
+  }
+  getFamilias() {
+    return this.http.get<any[]> (AppSettings.API_ENDPOINT_FAMILIAS_PROFESIONALES).pipe(map(items => {
+
+      return items;
+    }));
+  }
+  getGrados() {
+    return this.http.get<any[]> (AppSettings.API_ENDPOINT_GRADOS).pipe(map(items => {
+
+      return items;
+    }));
+  }
+  getCiclos() {
+    return this.http.get<any[]> (AppSettings.API_ENDPOINT_CICLOS).pipe(map(items => {
+
+      return items;
+    }));
+  }
+
+  getCentrosEducativos() {
+    return this.http.get<any[]> (AppSettings.API_ENDPOINT_CENTROS).pipe(map(items => {
+
+      return items;
+    }));
+  }
+  getTiposDocumento() {
+    return this.http.get<any[]>(AppSettings.API_ENDPOINT_TIPOS_DOCUMENTO).pipe(map(items => {
+
+      return items;
+    }));
+  }
+
+    getTiposTitulo() {
+      return this.http.get<any[]> (AppSettings.API_ENDPOINT_TIPOS_TITULO).pipe(map(items => {
+
+        return items;
+      }));
+    }
 
 
 
+  updateProfile(profile: any){
+      const url = AppSettings.API_ENDPOINT_USERS + '/' + profile.id;
+      return this.http
+          .put(url, profile, { headers: this.headers });
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
+    }
 
 private mockUsers =[ this.mockUser, this.mockUserStudent];
   constructor(
@@ -422,13 +345,13 @@ private mockUsers =[ this.mockUser, this.mockUserStudent];
   logout(): void {
     /*  this.store$.dispatch(new UserActions.Logout()); */
   }
-  public updateProfile(profile: any /* User */): Observable<any /* User */> {
-    /*if (Math.random() > 0.5) {
-      return this.http.put<TokenResponse>(AppSettings.API_ENDPOINT_USER_ME, profile);
-    }*/
-    this.mockUser = { ...profile };
-    return of(this.mockUser as any /* User */);
-  }
+  // public updateProfile(profile: any /* User */): Observable<any /* User */> {
+  //   /*if (Math.random() > 0.5) {
+  //     return this.http.put<TokenResponse>(AppSettings.API_ENDPOINT_USER_ME, profile);
+  //   }*/
+  //   this.mockUser = { ...profile };
+  //   return of(this.mockUser as any /* User */);
+  // }
   public signupProfile(profile: any /* UserOptions */): Observable<boolean> {
     return this.http.post<boolean>(
       AppSettings.API_ENDPOINT_USER_CREATE,

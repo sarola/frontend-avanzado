@@ -19,24 +19,21 @@ export class AppComponent {
     ) {
         this.signinService.currentUser.subscribe(x => this.currentUser = x);
         this.errorMessage = localStorage.getItem("errorMessage");
-        console.log("obtenemos errorMessage");
-         console.log("current user service: " + JSON.stringify(this.currentUser) + "*********");
+
          if(this.currentUser != null)
          	this.currentUserValue = true;
          else
          	this.currentUserValue = false;
 
          if(!this.currentUserValue){
-           this.router.navigate(["/"]);
+           this.router.navigate(["/signin"]);
          }
     }
 
     logout() {
         this.signinService.logout();
         this.currentUser = null;
-        // console.log("antes navigate");
-        // this.router.navigate(['http://localhost:4200/signin']);
-        // console.log("despois navigate");
+        this.router.navigate(['/signin']);
 
     }
 }

@@ -28,6 +28,8 @@ import {SigninService} from './services/signin.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {usersProvider} from './interceptors/users.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientInMemoryWebApiModule, InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {InMemoryDataService} from './services/inmemory-db.service';
 import {SharedModule} from './shared.module'
 
 /* export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -43,7 +45,9 @@ export const CORE_SERVICES: Provider[] = [
     useClass: JwtInterceptor,
     multi: true,
   },
-  usersProvider
+
+  usersProvider,
+    InMemoryDataService
   /*   { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' },
   { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
   { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
@@ -58,7 +62,7 @@ export const CORE_SERVICES: Provider[] = [
 @NgModule({
   imports: [
    // BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
 
     /*     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
@@ -76,7 +80,9 @@ export const CORE_SERVICES: Provider[] = [
         deps: [HttpClient]
       }
     }) */
-    // InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
+    HttpClientInMemoryWebApiModule.forRoot(
+        InMemoryDataService
+    )
   ],
   providers: CORE_SERVICES
 })

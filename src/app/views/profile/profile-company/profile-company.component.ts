@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile-company',
@@ -7,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileCompanyComponent implements OnInit {
 
-  constructor() { }
+  userProfile: any;
+
+  constructor(private router: Router, private route: ActivatedRoute) {
+
+    this.userProfile = JSON.parse(localStorage.getItem("userProfile"));
+
+
+  }
 
   ngOnInit() {
-  	
+
   }
+
 
 }

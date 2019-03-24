@@ -1,0 +1,8 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark padding-abajo" id="barra_superior" *ngIf="currentUser">
+	<div class="navbar-nav">
+		<a style="color:white" (click)="logout()">Logout</a>
+		<a style="color:white" [routerLink]="['/admin/dashboard']">  Dashboard</a>
+
+	</div>
+</nav>
+

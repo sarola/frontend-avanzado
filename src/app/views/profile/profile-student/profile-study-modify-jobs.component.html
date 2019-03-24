@@ -1,0 +1,39 @@
+<app-menu></app-menu>
+
+<form [formGroup]="jobsForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+
+
+        <div class="form-group" >
+            <label for="nombre_empresa">Nombre de la empresa</label>
+            <input class="col-sm-6" type="text" name="nombre_empresa" id="nombre_empresa" formControlName="nombre_empresa">
+
+        </div>
+        <div class="form-group" >
+            <label for="fecha_i">Fecha Inicio (DD/MM/YYYY)</label>
+            <input class="col-sm-6" type="text" name="fecha_i" id="fecha_i" formControlName="fecha_inicio">
+
+        </div>
+        <div class="form-group" >
+            <label for="fecha_f">Fecha Fin(DD/MM/YYYY)</label>
+            <input class="col-sm-6" type="text" name="fecha_f" id="fecha_f" formControlName="fecha_fin">
+
+        </div>
+        <div class="form-group" >
+            <label for="puesto">Puesto desempeñado</label>
+            <input class="col-sm-6" type="text" name="puesto" id="puesto" formControlName="puesto">
+
+        </div>
+        <div class="form-group" >
+            <label for="tareas">Tareas realizadas en el puesto desempeñado</label>
+            <textarea name="tareas" id="tareas" formControlName="tareas"></textarea>
+
+        </div>
+
+    </div>
+    <button type="submit" [disabled]="jobsForm.invalid">Guardar</button>
+
+</form>
+<style type="css">
+
+</style>

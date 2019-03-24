@@ -11,7 +11,9 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
 import {ProfileModule} from './views/profile/profile.module';
-import {ProfileStudyModifyComponent} from './views/profile/profile-student/profile-study-modify.component';
+import {OffersModule} from './views/offers/offers.module';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import {ConfigModule} from './views/config/config.module';
 
 
 @NgModule({
@@ -20,8 +22,9 @@ import {ProfileStudyModifyComponent} from './views/profile/profile-student/profi
     CoreModule,
     HttpClientModule,
     BrowserModule,
-      ProfileModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    ProfileModule,
+    OffersModule,
+    ConfigModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false })
   ],
   declarations: [AppComponent],

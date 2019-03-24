@@ -1,0 +1,21 @@
+<app-menu></app-menu>
+<form [formGroup]="configForm" (ngSubmit)="onSubmit()">
+  <div class="form-group" >
+  <label for="idioma">Idioma</label>
+  <select name="idioma" id="idioma" formControlName="idioma">
+    <option [value]= "idioma" *ngFor="let idioma of idiomas">{{idioma}}</option>
+
+  </select>
+</div>
+
+  <div class="form-group" >
+    <label>Provincia</label><br />
+    <!--<label for="provincias">Provincias</label>-->
+    <label formArrayName="provincias" *ngFor="let provincia of configForm.controls.provincias.controls; let i = index">
+      <input type="checkbox" [formControlName]="i">
+      {{provincias[i]}}
+    </label>
+    <label><input type="checkbox" (change)="checkAll($event)"> Seleccionar todos</label>
+  </div>
+  <button type="submit">Guardar</button>
+</form>

@@ -22,12 +22,10 @@ export class SigninComponent implements OnInit {
  fallologin:string;
     usersProfileArray: any[];
     userProfile: any;
-  constructor(private signinService: SigninService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private profileService: ProfileService) {
-
-  console.log("constructor"); }
-
+  constructor(private signinService: SigninService, private formBuilder: FormBuilder, private router: Router,
+              private route: ActivatedRoute, private profileService: ProfileService) {
+  }
   ngOnInit() {
-    console.log("iniciamos");
 
   	if(localStorage.getItem("errorMessage") != null)
       localStorage.removeItem("errorMessage");
@@ -49,37 +47,17 @@ export class SigninComponent implements OnInit {
 
    }
  	];
+
    	localStorage.setItem("users", JSON.stringify(this.users));
 
-
-
- 	// this.signinService.getUsers().subscribe((data:  {id, username, password}[]) => {console.log("data: " + data);this.users =data;
-  // 	console.log("users1:" + JSON.stringify(data));
-  // 	console.log("users1:" + this.users);
-  // 	localStorage.setItem("users", this.users);
-  // 	for(let u of this.users){
-  // 		console.log("us: " + u.username + " - " + u.password);
-  // 	}
-
-
-  		
-//});
-
   	this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
+            username: ['', [Validators.email, Validators.required]],
             password: ['', Validators.required]
         });
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
-
-
-  	  // get return url from route parameters or default to '/'
-
-
   }
-
-  get f() { return this.loginForm.controls; }
 
     onSubmit() {
         this.submitted = true;
@@ -91,16 +69,11 @@ export class SigninComponent implements OnInit {
       
         this.loading = true;
 
-        this.signinService.login(this.f.username.value, this.f.password.value).pipe(first()).subscribe(
+        this.signinService.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value).pipe(first()).subscribe(
                 data => {
-                	
-
-                    console.log("user id: " + data.id);
-                   this.signinService.loadUser(data.id).subscribe(x => {
+                    this.signinService.loadUser(data.id).subscribe(x => {
                      localStorage.setItem("userProfile", JSON.stringify(x));
                       this.router.navigate(['admin/dashboard']);
-                    //localStorage.removeItem("errorMessage");
-
                    });
 
                 	
@@ -111,7 +84,6 @@ export class SigninComponent implements OnInit {
                     console.log(error.message);
                     this.loading = false;
                     localStorage.setItem("errorMessage", "Usuario o contraseña incorrectos");
-                    console.log("anadimos localstorage");
                     this.router.navigate(["/signin"]);
                     this.fallologin = "Usuario o contraseña incorrectos";
                 });

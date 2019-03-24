@@ -1,0 +1,92 @@
+<app-menu></app-menu>
+
+<form [formGroup]="studiesForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+
+        <div class="form-group">
+            <label for="tipo_titulo">Tipo de título</label>
+            <select (change)="findInvalidControls()" name="tipo_titulo" id="tipo_titulo" formControlName="tipo_titulo">
+                <option [value]="tipo" *ngFor="let tipo of tipos_titulo">{{tipo}}</option>
+            </select>
+        </div>
+
+        <div class="form-group" *ngIf="studiesForm.controls.tipo_titulo.value === 'Título Universitario' || studiesForm.controls.tipo_titulo.value === 'Otro título'">
+            <label for="nombre_centro">Nombre del centro</label>
+            <input class="col-sm-6" type="text" name="nombre_centro" id="nombre_centro" formControlName="nombre_centro">
+
+        </div>
+        <div class="form-group" *ngIf="studiesForm.controls.tipo_titulo.value === 'Ciclo formativo'">
+            <label for="centro_educativo">Centro educativo</label>
+            <select name="centro_educativo" id="centro_educativo" formControlName="centro_educativo">
+                <option [value]="centro" *ngFor="let centro of centros">{{centro}}</option>
+            </select>
+        </div>
+        <div class="form-group" *ngIf="studiesForm.controls.tipo_titulo.value=== 'Título Universitario' || studiesForm.controls.tipo_titulo.value === 'Otro título'">
+            <label for="titulo">Título</label>
+            <input type="text" class="col-sm-10" name="titulo" id="titulo" formControlName="titulo">
+
+        </div>
+        <div class="form-group">
+            <label for="fecha">Fecha de obtención del título</label>
+            <input type="text" name="fecha" id="fecha" formControlName="fecha_titulo">
+
+        </div>
+        <div class="form-group" *ngIf="studiesForm.controls.tipo_titulo.value === 'Ciclo formativo'">
+            <label for="familia">Familia profesional</label>
+            <select  (change)="cargaCiclos(studiesForm.controls.familia_profesional.value, studiesForm.controls.grado.value)" name="familia" id="familia" formControlName="familia_profesional">
+                <option [value]="familia" *ngFor="let familia of familias_profesionales">{{familia}}</option>
+            </select>
+        </div>
+        <div class="form-group" *ngIf="studiesForm.controls.tipo_titulo.value === 'Ciclo formativo'">
+            <label for="grado">Grado</label>
+            <select (change)="cargaCiclos(studiesForm.controls.familia_profesional.value, studiesForm.controls.grado.value)" name="grado" id="grado" formControlName="grado">
+                <option [value]="grado" *ngFor="let grado of grados">{{grado}}</option>
+            </select>
+        </div>
+        <div class="form-group" *ngIf="studiesForm.controls.tipo_titulo.value === 'Ciclo formativo' && ciclos.length">
+            <label for="ciclo">Ciclo</label>
+            <select  name="ciclo" id="ciclo" formControlName="ciclo" >
+                <option [value]= "ciclo" *ngFor="let ciclo of ciclos">{{ciclo}}</option>
+            </select>
+        </div>
+       <!-- <div class="form-group" *ngIf="estudioActual.tipo_titulo === 'Ciclo formativo'">
+            <label for="familia">Familia profesional</label>
+            <select name="familia" id="familia" formControlName="familia_profesional">
+                <option *ngFor="let familia of familas_profesionales">{{familia}}</option>
+            </select>
+
+
+
+        <div class="form-group" *ngIf="estudioActual.tipo_titulo === 'Ciclo formativo'">
+            <label for="grado">Ciclo</label>
+            <select name="grado" id="grado" formControlName="grado">
+                <option *ngIf="estudioActual.familia_profesional === 'Informática'" *ngFor="let ciclo of ciclos_informatica">{{ciclo}}</option>
+                <option *ngIf="estudioActual.familia_profesional === 'Administración'" *ngFor="let ciclo of ciclos_administracion">{{ciclo}}</option>
+            </select>
+        </div>
+       -->
+        <div class="form-group" *ngIf="estudioActual.tipo_titulo === 'Ciclo formativo'">
+            <label for="dual">Formación dual</label>
+            <input type="checkbox" name="dual" id="dual" formControlName="dual">
+
+        </div>
+        <div class="form-group">
+            <label for="bilingue">Bilingue</label>
+            <input type="checkbox" name="bilingue" id="bilingue" formControlName="bilingue">
+
+        </div>
+        <div class="form-group">
+            <label for="certificado">Certificado</label>
+            <input (change)="findInvalidControls()" type="checkbox" name="certificado" id="certificado" formControlName="certificado">
+            <input type="file" name="certificado_file">
+
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="studiesForm.invalid ||
+    (studiesForm.controls.tipo_titulo.value === 'Ciclo formativo' && (!ciclos.includes(studiesForm.controls.ciclo.value) || !centros.includes(studiesForm.controls.centro_educativo.value)))">Guardar</button>
+
+</form>
+<style type="css">
+
+</style>

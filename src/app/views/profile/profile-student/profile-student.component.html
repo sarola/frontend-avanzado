@@ -29,12 +29,12 @@
         </tr>
         <tr>
           <th>NIF/NIE</th>
-            <td>{{userProfile.nif}}</td>
+            <td>{{userProfile.num_documento}}</td>
           
         </tr>
         <tr>
           <th>Permisos de conducir</th>
-            <td>{{userProfile.permisos_conducir.join(', ')}}</td>
+            <td>{{userProfile.permisos_conducir}}</td>
             
         </tr>
           <tr>
@@ -47,7 +47,7 @@
 
 			
 </table>
-    <a [routerLink]="['/admin/profile/profile-student', userProfile.id]">Modificar</a>
+    <a [routerLink]="['/admin/profile/profile-student/modify']">Modificar</a>
 </section>
 <div id="otra_info" class="float-left">
 	<form>
@@ -69,92 +69,114 @@
 
 <h2>Formaci&oacute;n acad&eacute;mica</h2>
 <section id="formacion_academica">
+    <div *ngIf="borradoEstudio" class="alert alert-success alert-dismissible">
+
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+           Estudio borrado correctamente
+
+        </div>
+
 <table class="table table-bordered table-striped">
 	<thead class="thead-light">
 		<th>Nivel</th>
 		<th>T&iacute;tulo</th>
 		<th>Centro</th>
 		<th>Fecha</th>
-		<th>Certificado</th>
-	</thead>
+        <th>Certificado</th>
+        <th>Bilingüe</th>
+        <th>Editar</th>
+        <th>Borrar</th>
+
+
+    </thead>
 	<tbody>
 	 
-	 <tr  *ngFor="let estudio of userProfile.studies">
-        <td>{{estudio.level}}</td>
+	 <tr  *ngFor="let estudio of userProfile.studies; let i = index">
+        <td>{{estudio.tipo_titulo}}</td>
         <td>{{estudio.titulo}}</td>
-        <td>{{estudio.institution}}</td>
+        <td>{{estudio.centro}}</td>
         <td>{{estudio.date}}</td>
         <td>{{estudio.certificate ? 'Si' : ''}}</td>
+         <td>{{estudio.bilingue ? 'Si' : ''}}</td>
+         <td><a [routerLink]="['/admin/profile/profile-student/modify-studies', {estudio:estudio.uid}]">Editar</a> </td>
+         <td><a (click)="borrarEstudio(estudio)">Borrar</a> </td>
 
-      </tr>
+     </tr>
 		
 	</tbody>
 </table>
+    <a [routerLink]="['/admin/profile/profile-student/modify-studies']">Nueva formación</a>
 </section>
 
 <h2>Experiencia laboral</h2>
 <section id="experiencia_laboral">
+    <div *ngIf="borradoTrabajo" class="alert alert-success alert-dismissible">
+
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+        Experiencia laboral borrada correctamente
+
+    </div>
 <table class="table table-bordered table-striped">
 	<thead class="thead-light">
 		<th>Empresa</th>
 		<th>Puesto</th>
 		<th>Fechas</th>
-		
+        <th>Editar</th>
+        <th>Borrar</th>
 	</thead>
 	<tbody>
 	 
 	 <tr  *ngFor="let trabajo of userProfile.experiences">
-        <td>{{trabajo.company}}</td>
-        <td>{{trabajo.job}}</td>
-        <td>{{trabajo.dates}}</td>
+        <td>{{trabajo.empresa}}</td>
+        <td>{{trabajo.puesto}}</td>
+        <td>{{trabajo.fecha_i + " - " + trabajo.fecha_f}}</td>
+         <td><a [routerLink]="['/admin/profile/profile-student/modify-jobs', {trabajo:trabajo.uid}]">Editar</a> </td>
+         <td><a (click)="borrarTrabajo(trabajo)">Borrar</a> </td>
 
-      </tr>
+     </tr>
 		
 	</tbody>
 </table>
+    <a [routerLink]="['/admin/profile/profile-student/modify-jobs']">Nueva experiencia laboral</a>
+
 </section>
 
 <h2>Idiomas</h2>
-<section id="experiencia_laboral">
+<section id="idiomas">
+    <div *ngIf="borradoIdimoa" class="alert alert-success alert-dismissible">
+
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+        Idioma borrado correctamente
+
+    </div>
 <table class="table table-bordered table-striped">
 	<thead class="thead-light">
 		<th>Nivel</th>
 		<th>Idioma</th>
 		<th>Fecha</th>
-		
-	</thead>
+        <th>Editar</th>
+        <th>Borrar</th>
+
+
+    </thead>
 	<tbody>
 	 
 	 <tr  *ngFor="let idioma of userProfile.languages">
         <td>{{idioma.level}}</td>
         <td>{{idioma.language}}</td>
         <td>{{idioma.date}}</td>
+         <td><a [routerLink]="['/admin/profile/profile-student/modify-lang', {idioma:idioma.uid}]">Editar</a> </td>
+         <td><a (click)="borrarIdioma(idioma)">Borrar</a> </td>
 
-      </tr>
+
+     </tr>
 		
 	</tbody>
 </table>
+    <a [routerLink]="['/admin/profile/profile-student/modify-lang']">Nuevo idioma</a>
 </section>
 
 </div>
-<!-- •	Datos Personales: ◦ Nombre y apellidos ◦ Correo electrónico.
-
-•	Formación Académica (una tabla resumen en la que cada fila contendrá la siguiente información):
-◦ Nivel, con uno de los siguientes dos valores:
-▪ Ciclo Formativo (Grado superior, Grado medio o Formación Básica).
-▪ Universidad (Grado, Diplomado, Licenciado/Ingeniero, Máster, Doctorado).
-◦ Título (El título académico que tiene), algunos ejemplos:
-▪ Nivel (Ciclo formativo) - Desarrollo de Aplicaciones Web.
-▪ Nivel (Universidad) - Ingeniero en Informática
-◦ Centro (Nombre del IES)
-◦ Fecha
-◦ Certificado (Documento con el documento del título o certificado).
-•	Experiencia Laboral (una tabla resumen en la que cada fila contendrá la siguiente información):
-◦ Empresa
-◦ Puesto
-◦ Fechas
-•	Idiomas (una tabla resumen en la que cada fila contendrá la siguiente información):
-◦ Nivel (A1, A2, B1, B2, C1, C2).
-◦ Idioma.
-◦ Fecha.
- -->
