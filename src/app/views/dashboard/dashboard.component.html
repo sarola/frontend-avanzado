@@ -1,12 +1,9 @@
-<app-menu></app-menu>
-
 <div>
 	
 		<ul>
 			<li><a routerLink="/admin/profile">Profile</a></li>
-			<li><a routerLink="/admin/offers">Ofertas de empleo</a></li>
-			<li><a *ngIf="userRol==='company'" routerLink="/admin/config">Configuración</a></li>
-			<li><a *ngIf="userRol==='student'" [routerLink]="['/admin/offers', {page: 'my_offers'}]">Mis ofertas</a></li>
 		</ul>
+	
+	<div>dashboard</div>
 </div>
 

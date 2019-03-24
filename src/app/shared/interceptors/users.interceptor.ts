@@ -3,7 +3,6 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import {ProfileService} from '../services/profile.service';
-import {OffersService} from '../services/offers.service';
 
 @Injectable()
 export class UsersInterceptor implements HttpInterceptor {
@@ -20,6 +19,7 @@ export class UsersInterceptor implements HttpInterceptor {
 
             // authenticate
             if (request.url.endsWith('/users/signin') && request.method === 'POST') {
+                console.log('imos pa users/signin');
                 // find if any user matches login credentials
                 const filteredUsers = users.filter(user => {
                     return user.username === request.body.username && user.password === request.body.password;
@@ -37,6 +37,7 @@ export class UsersInterceptor implements HttpInterceptor {
 
                     return of(new HttpResponse({ status: 200, body: body }));
                 } else {
+                    console.log('Incorrectos!');
                     // else return 400 bad request
                     return throwError({ error: { message: 'Username or password is incorrect' } });
                 }
@@ -44,6 +45,8 @@ export class UsersInterceptor implements HttpInterceptor {
 
             // get users
             if (request.url.endsWith('/users') && request.method === 'GET') {
+                console.log('Authorization: ' + request.headers.get('Authorization'));
+// check for fake auth token in header and return users if valid, this security is implemented server side in a real application
                 if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                     return of(new HttpResponse({ status: 200, body: users }));
                 } else {console.log('401 error get users' );
@@ -54,25 +57,37 @@ export class UsersInterceptor implements HttpInterceptor {
 
             // get user by id
             if (request.url.match(/\/users\/\d+$/) && request.method === 'GET') {
+                // check for fake auth token in header and return user if valid, this security is implemented
+                // server side in a real application
+                console.log("pedimos authorization");
+                console.log("pedimos authorization: " + request.headers.get("Authorizarion"));
+
                 if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                     // find user by id in users array
                     const urlParts = request.url.split('/');
-                    const id = parseInt(urlParts[urlParts.length - 1], 10);
+                    const id = parseInt(urlParts[urlParts.length - 1]);
                    // let matchedUsers = users.filter(user => { return user.id === id; });
-                    this.profileService.getUsers().subscribe(x => {
-                        usersProfileArray = x;
-                        const userProfile = usersProfileArray.filter(item => {return  item.id === id})[0];
+                    const users = this.profileService.loadUsersProba();
 
 
-                        return of(new HttpResponse({ status: 200, body: userProfile }));
-                    });
+                    users.subscribe(x => usersProfileArray = x);
+                    console.log(usersProfileArray);
+                    console.log("usersProfile2: " + usersProfileArray);
 
+                    const userProfile = usersProfileArray.filter(item => {return  item.id === id})[0];
+                    console.log("userProfileFilter: " + userProfile);
+
+                    // profileservice
+
+                    return of(new HttpResponse({ status: 200, body: userProfile }));
                 } else {
                     // return 401 not authorised if token is null or invalid
                     console.log('401 error get user by id' );
                     return throwError({ status: 401, error: { message: 'Unauthorised' } });
                 }
             }
+
+
             // pass through any requests not handled above
             return next.handle(request);
 

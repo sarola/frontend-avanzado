@@ -29,5 +29,6 @@ this.rememberPasswordForm = this.formBuilder.group({
   	this.rememberPasswordMessage = "Su contraseña se ha enviado al correo indicado";
   	this.loading = false;
   }
+  get f() { return this.rememberPasswordForm.controls; }
 
 }

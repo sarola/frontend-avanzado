@@ -30,6 +30,7 @@ export class SigninService {
     private http: HttpClient/* , private store$: Store<AppStore> */
   ) {
     this.currentUserSubject = new BehaviorSubject<{id, username, token}>(JSON.parse(localStorage.getItem('currentUser')));
+    console.log("currentUserSubject: " + JSON.stringify(this.currentUserSubject));
         this.currentUser = this.currentUserSubject.asObservable();
   }
    public get currentUserValue(): {id, username, token} {
@@ -48,38 +49,86 @@ getUsers() {
              
     }
 login(username:string, password:string){
+ /*return this.http.post<any>(this.users_endpoint).pipe(map((users:{id, username, password}[]) => {
 
-             return this.http.post<any>(AppSettings.API_ENDPOINT_LOGIN, { username, password })
+     console.log("userServiceTotal: " + JSON.stringify(users));
+     console.log("userServiceActual: " + username);
+
+     let filteredUsers = users.filter(user => {
+                    return user.username === username && user.password === password;
+                });
+
+                if (filteredUsers.length) {
+                    // if login details are valid return 200 OK with user details and fake jwt token
+                    let user = filteredUsers[0];
+                    let body = {
+                        id: user.id,
+                        username: user.username,
+                        token: 'fake-jwt-token'
+                    };
+                    console.log(user.id + ", " + user.username + ", " + user.password);
+                    localStorage.setItem('currentUser', JSON.stringify(body));
+
+                    this.currentUserSubject.next(body);
+                
+
+                return user;
+                } else {
+                  console.log("Usuario no existe");
+                    // else return 400 bad request
+                    return null;
+                }
+
+
+                // login successful if there's a jwt token in the response
+             
+            }));*/
+
+
+             return this.http.post<any>('api/users/signin', { username, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
-                    this.http.get<any[]>(AppSettings.API_ENDPOINT_USERS).subscribe(x =>
-                        localStorage.setItem('usersProfile', JSON.stringify((x))));
+                    //this.currentUser = user;
                 }
+
+                console.log("User service: " + user);
+
                 return user;
             }));
 
   }
 
 loadUser(id:number){
-  return this.http.get<any>(AppSettings.API_ENDPOINT_USERS + '/' + id)
+  return this.http.get<any>('api/users/'+ id)
             .pipe(map(user => {
+                // login successful if there's a jwt token in the response
                 if (user && user.token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('userProfile', JSON.stringify(user));
                     this.currentUserSubject.next(user);
+                    //this.currentUser = user;
                 }
+
+                console.log("Profile service: " + user);
+
                 return user;
             }));
 }
 
   logout() {
+        // remove user from local storage to log user out
+        console.log("localStorage: " + localStorage.getItem("currentUser"));
+        //console.log(JSON.stringify(this.currentUser));
+        console.log("currentUserLogout: " + this.currentUser);
 
-
-      localStorage.removeItem('currentUser');
-      this.currentUserSubject.next(null);
-
+        localStorage.removeItem('currentUser');
+        console.log("currentUserLogout2");
+        this.currentUserSubject.next(null);
     }
+
+ 
 }

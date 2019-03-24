@@ -3,16 +3,12 @@ export class AppSettings {
   public static readonly APP_NAME = 'PoliJob';
   public static readonly APP_LOCALSTORAGE_TOKEN = 'PoliJob_Token';
   public static readonly APP_VERSION = '0.1.0';
-  public static readonly API_ENDPOINT = '/api/';
+  public static readonly API_ENDPOINT = '//localhost:4200/';
   public static readonly STATIC_ENDPOINT = AppSettings.API_ENDPOINT + 'static/';
   public static readonly STATIC_AVATAR_ENDPOINT =
     AppSettings.STATIC_ENDPOINT + 'images/avatar/';
   public static readonly API_ENDPOINT_APP = AppSettings.API_ENDPOINT + 'app/';
-  public static readonly API_ENDPOINT_LOGIN =
-      AppSettings.API_ENDPOINT + '/users/signin';
   public static readonly API_ENDPOINT_USER = AppSettings.API_ENDPOINT + 'user';
-  public static readonly API_ENDPOINT_USERS =
-      AppSettings.API_ENDPOINT + 'users';
   public static readonly API_ENDPOINT_USER_ME =
     AppSettings.API_ENDPOINT + 'user-me';
   public static readonly API_ENDPOINT_USER_CREATE =
@@ -33,28 +29,6 @@ export class AppSettings {
   public static readonly API_ENDPOINT_AUTH = AppSettings.API_ENDPOINT + 'auth/';
   public static readonly API_ENDPOINT_AUTH_LOCAL =
     AppSettings.API_ENDPOINT + 'auth/local/';
-  public static readonly API_ENDPOINT_OFFERS =
-      AppSettings.API_ENDPOINT + 'ofertas';
-  public static readonly API_ENDPOINT_IDIOMAS =
-      AppSettings.API_ENDPOINT + 'idiomas';
-  public static readonly API_ENDPOINT_NIVELES_IDIOMAS =
-      AppSettings.API_ENDPOINT + 'niveles_idiomas';
-  public static readonly API_ENDPOINT_PROVINCIAS =
-      AppSettings.API_ENDPOINT + 'provincias';
-  public static readonly API_ENDPOINT_MUNICIPIOS =
-      AppSettings.API_ENDPOINT + 'municipios';
-  public static readonly API_ENDPOINT_CICLOS =
-      AppSettings.API_ENDPOINT + 'ciclos_formativos';
-  public static readonly API_ENDPOINT_CENTROS =
-      AppSettings.API_ENDPOINT + 'centros_educativos';
-  public static readonly API_ENDPOINT_GRADOS =
-      AppSettings.API_ENDPOINT + 'grados';
-  public static readonly API_ENDPOINT_FAMILIAS_PROFESIONALES =
-      AppSettings.API_ENDPOINT + 'familias_profesionales';
-  public static readonly API_ENDPOINT_TIPOS_DOCUMENTO =
-      AppSettings.API_ENDPOINT + 'tipos_documento';
-  public static readonly API_ENDPOINT_TIPOS_TITULO =
-      AppSettings.API_ENDPOINT + 'tipos_titulo';
 
   public static readonly APP_QUILL_EDITOR_CONFIGURATION = {
     toolbar: [
