@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 /* import { AdminLayoutComponent } from './shared/components/layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './shared/components/layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './shared/services/auth/auth.guard'; */
@@ -6,12 +7,17 @@ import { AuthGuard } from './shared/services/auth/auth.guard'; */
 export const rootRouterConfig: Routes = [
   {
     path: '',
-    redirectTo: 'signin',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {
     path: 'signin',
     loadChildren: './views/signin/signin.module#SigninModule',
+    data: { title: 'Signin' }
+  },
+  {
+    path: 'auth',
+    loadChildren: './views/auth/auth.module#AuthModule',
     data: { title: 'Signin' }
   },
   {
@@ -27,7 +33,7 @@ export const rootRouterConfig: Routes = [
   },
   {
     path: 'admin',
-    /*  component: AdminLayoutComponent, */
+    component: AdminLayoutComponent,
     /* canActivate: [AuthGuard], */
     children: [
       {
@@ -43,20 +49,12 @@ export const rootRouterConfig: Routes = [
       {
         path: 'profile',
         loadChildren: './views/profile/profile.module#ProfileModule',
-
-        data: { title: 'Profile', breadcrumb: 'Profile' }
+        data: { title: 'Material', breadcrumb: 'MATERIAL' }
       },
-
       {
         path: 'offers',
         loadChildren: './views/offers/offers.module#OffersModule',
         data: { title: 'Offers', breadcrumb: 'Offers' }
-      },
-
-      {
-        path: 'config',
-        loadChildren: './views/config/config.module#ConfigModule',
-        data: { title: 'Config', breadcrumb: 'Config' }
       }
     ]
   },

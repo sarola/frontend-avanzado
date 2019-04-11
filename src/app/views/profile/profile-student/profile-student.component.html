@@ -1,182 +1,143 @@
-
 <div id="contenido">
-<div class="float-left"  id="foto-perfil">
-<div>
-<img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{userProfile.avatar_name}}" />
-</div>
-<div class="text-center pr-5">
-{{userProfile.name + " " + userProfile.surname}}
-</div>
-</div>
+  <div class="float-left" id="foto-perfil">
+    <div>
+      <img
+        class="img-fluid img-profile rounded-circle mx-auto mb-2"
+        src="{{ user.avatar_hash }}"
+      />
+    </div>
+    <div class="text-center pr-5">
+      {{ user.name + ' ' + user.surname }}
+    </div>
+  </div>
 
-<section id="datosPersonales" class="float-left">
-	<table>
-		
-		<tbody>
+  <section id="datosPersonales" class="float-left">
+    <table>
+      <tbody>
         <tr>
           <th>Email</th>
-            <td>{{userProfile.email}}</td>
-            
+          <td>{{ user.email }}</td>
         </tr>
         <tr>
           <th>Fecha de nacimiento</th>
-            <td>{{userProfile.fecha_nacimiento}}</td>
-           
+          <td>{{ user.birthdate }}</td>
         </tr>
         <tr>
-          <th>Tel&eacute;fono </th>
-            <td>{{userProfile.telefono}}</td>            
+          <th>Tel&eacute;fono</th>
+          <td>{{ user.phone }}</td>
         </tr>
         <tr>
           <th>NIF/NIE</th>
-            <td>{{userProfile.num_documento}}</td>
-          
+          <td>{{ user.documentNumber }}</td>
         </tr>
         <tr>
           <th>Permisos de conducir</th>
-            <td>{{userProfile.permisos_conducir}}</td>
-            
+          <td>{{ user.license }}</td>
         </tr>
-          <tr>
+        <tr>
           <th>Direccion</th>
-            <td>{{userProfile.direccion}}</td>
-            
+          <td>{{ user.address | json }}</td>
         </tr>
+      </tbody>
+    </table>
+    <a [routerLink]="['/admin/profile/profile-student/account']">Modificar</a>
+  </section>
+  <div id="otra_info" class="float-left">
+    <form>
+      <div class="float-left">
+        <label for="about-me">Acerca de mi...</label><br />
+        <textarea readonly="true" id="about-me" name="about-me">{{
+          user.aboutMe
+        }}</textarea>
+      </div>
+      <div class="float-left">
+        <label for="other">Otras competencias</label> <br />
 
-    </tbody>
+        <textarea readonly="true" id="other" name="other">{{
+          user.otherCompetences
+        }}</textarea>
+      </div>
+    </form>
+  </div>
 
-			
-</table>
-    <a [routerLink]="['/admin/profile/profile-student/modify']">Modificar</a>
-</section>
-<div id="otra_info" class="float-left">
-	<form>
-	<div class="float-left">
-	<label for="about-me">Acerca de mi...</label><br />
-	<textarea readonly="true" id="about-me" name="about-me">{{userProfile.about_me}}</textarea>
-	</div>
-	<div class="float-left"> 
-	<label for="other">Otras competencias</label> <br />
+  <section style="clear:both;padding-bottom:4em;"></section>
 
-	<textarea readonly="true" id="other" name="other">{{userProfile.other_competency}}</textarea>
-	</div>
-
-
-	</form>
-</div>
-
-<section style="clear:both;padding-bottom:4em;"></section>
-
-<h2>Formaci&oacute;n acad&eacute;mica</h2>
-<section id="formacion_academica">
-    <div *ngIf="borradoEstudio" class="alert alert-success alert-dismissible">
-
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-
-           Estudio borrado correctamente
-
-        </div>
-
-<table class="table table-bordered table-striped">
-	<thead class="thead-light">
-		<th>Nivel</th>
-		<th>T&iacute;tulo</th>
-		<th>Centro</th>
-		<th>Fecha</th>
+  <h2>Formaci&oacute;n acad&eacute;mica</h2>
+  <section id="formacion_academica">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-light">
+        <th>Tipo</th>
+        <th>Nivel</th>
+        <th>T&iacute;tulo</th>
+        <th>Centro</th>
+        <th>Fecha</th>
         <th>Certificado</th>
         <th>Bilingüe</th>
-        <th>Editar</th>
-        <th>Borrar</th>
+        <th>Dual</th>
+        <th>Acciones</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let study of user.studies; let i = index">
+          <td>{{ study.level.name }}</td>
+          <td>{{ study.grade?.name }}</td>
 
+          <td>{{ study.title.name || study.title }}</td>
+          <td>{{ study.institution.name || study.institution }}</td>
+          <td>{{ study.date }}</td>
+          <td>{{ study.certificate ? 'Sí' : 'No' }}</td>
+          <td>{{ study.bilingue ? 'Sí' : 'No' }}</td>
+          <td>{{ study.dual ? 'Sí' : 'No' }}</td>
 
-    </thead>
-	<tbody>
-	 
-	 <tr  *ngFor="let estudio of userProfile.studies; let i = index">
-        <td>{{estudio.tipo_titulo}}</td>
-        <td>{{estudio.titulo}}</td>
-        <td>{{estudio.centro}}</td>
-        <td>{{estudio.date}}</td>
-        <td>{{estudio.certificate ? 'Si' : ''}}</td>
-         <td>{{estudio.bilingue ? 'Si' : ''}}</td>
-         <td><a [routerLink]="['/admin/profile/profile-student/modify-studies', {estudio:estudio.uid}]">Editar</a> </td>
-         <td><a (click)="borrarEstudio(estudio)">Borrar</a> </td>
+          <td>
+            <a
+              [routerLink]="['/admin/profile/profile-student/study', study.uid]"
+              >Editar</a
+            >
+            |
+            <a style="cursor:pointer" (click)="deleteStudy(study.uid)"
+              >Borrar</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a [routerLink]="['/admin/profile/profile-student/study']"
+      >Nueva formación</a
+    >
+  </section>
 
-     </tr>
-		
-	</tbody>
-</table>
-    <a [routerLink]="['/admin/profile/profile-student/modify-studies']">Nueva formación</a>
-</section>
-
-<h2>Experiencia laboral</h2>
-<section id="experiencia_laboral">
-    <div *ngIf="borradoTrabajo" class="alert alert-success alert-dismissible">
-
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-
-        Experiencia laboral borrada correctamente
-
-    </div>
-<table class="table table-bordered table-striped">
-	<thead class="thead-light">
-		<th>Empresa</th>
-		<th>Puesto</th>
-		<th>Fechas</th>
-        <th>Editar</th>
-        <th>Borrar</th>
-	</thead>
-	<tbody>
-	 
-	 <tr  *ngFor="let trabajo of userProfile.experiences">
-        <td>{{trabajo.empresa}}</td>
-        <td>{{trabajo.puesto}}</td>
-        <td>{{trabajo.fecha_i + " - " + trabajo.fecha_f}}</td>
-         <td><a [routerLink]="['/admin/profile/profile-student/modify-jobs', {trabajo:trabajo.uid}]">Editar</a> </td>
-         <td><a (click)="borrarTrabajo(trabajo)">Borrar</a> </td>
-
-     </tr>
-		
-	</tbody>
-</table>
-    <a [routerLink]="['/admin/profile/profile-student/modify-jobs']">Nueva experiencia laboral</a>
-
-</section>
-
-<h2>Idiomas</h2>
-<section id="idiomas">
-    <div *ngIf="borradoIdimoa" class="alert alert-success alert-dismissible">
-
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-
-        Idioma borrado correctamente
-
-    </div>
-<table class="table table-bordered table-striped">
-	<thead class="thead-light">
-		<th>Nivel</th>
-		<th>Idioma</th>
-		<th>Fecha</th>
-        <th>Editar</th>
-        <th>Borrar</th>
-
-
-    </thead>
-	<tbody>
-	 
-	 <tr  *ngFor="let idioma of userProfile.languages">
-        <td>{{idioma.level}}</td>
-        <td>{{idioma.language}}</td>
-        <td>{{idioma.date}}</td>
-         <td><a [routerLink]="['/admin/profile/profile-student/modify-lang', {idioma:idioma.uid}]">Editar</a> </td>
-         <td><a (click)="borrarIdioma(idioma)">Borrar</a> </td>
-
-
-     </tr>
-		
-	</tbody>
-</table>
-    <a [routerLink]="['/admin/profile/profile-student/modify-lang']">Nuevo idioma</a>
-</section>
-
+  <h2>Idiomas</h2>
+  <section id="languages">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-light">
+        <th>Nivel</th>
+        <th>Idioma</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let language of user.languages">
+          <td>{{ language.level.name }}</td>
+          <td>{{ language.name.name }}</td>
+          <td>{{ language.date }}</td>
+          <td>
+            <a
+              [routerLink]="[
+                '/admin/profile/profile-student/language',
+                language.uid
+              ]"
+              >Editar</a
+            >
+            |
+            <a style="cursor:pointer" (click)="deleteLanguage(language.uid)"
+              >Borrar</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a [routerLink]="['/admin/profile/profile-student/language']"
+      >Nuevo idioma</a
+    >
+  </section>
 </div>

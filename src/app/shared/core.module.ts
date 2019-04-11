@@ -14,7 +14,7 @@ import { AuthEffects } from './states/auth/effects/auth.effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterEffects } from './states/router/effects/router.effects';
 
-import { UserEffects } from './states/user/effects/user.effects';
+import { AuthEffects } from './states/user/effects/user.effects';
 import { AppEffects } from './states/app/effects'; */
 /* import { UsersEffects } from './states/users/effects'; */
 /* import { UsersService } from '../views/users/shared/users.service'; */
@@ -23,14 +23,8 @@ import { ProfileService } from './services/profile.service';
 /* import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'; */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AlertService } from './services/alert/alert.service';
-import {SigninService} from './services/signin.service';
-import {JwtInterceptor} from './interceptors/jwt.interceptor';
-import {usersProvider} from './interceptors/users.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {HttpClientInMemoryWebApiModule, InMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './services/inmemory-db.service';
-import {SharedModule} from './shared.module'
+import { NotificationsService } from './services/notifications.service';
+import { OffersService } from './services/offers.service';
 
 /* export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -38,16 +32,18 @@ import {SharedModule} from './shared.module'
 
 export const CORE_SERVICES: Provider[] = [
   ProfileService,
-  SigninService,
-  AlertService,
-{
+  OffersService,
+  NotificationsService
+  /* {
     provide: HTTP_INTERCEPTORS,
-    useClass: JwtInterceptor,
+    useClass: JWTInterceptor,
     multi: true,
   },
-
-  usersProvider,
-    InMemoryDataService
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtExpiredInterceptor,
+    multi: true,
+  }, */
   /*   { provide: MAT_DATE_LOCALE, useValue: 'ja-JP' },
   { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
   { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
@@ -61,16 +57,15 @@ export const CORE_SERVICES: Provider[] = [
 
 @NgModule({
   imports: [
-   // BrowserAnimationsModule,
-    HttpClientModule,
-
+    BrowserAnimationsModule,
+    HttpClientModule
     /*     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     StoreDevtoolsModule.instrument({ maxAge: 50 }),
     EffectsModule.forRoot([
       AppEffects,
       AuthEffects,
-      UserEffects,
+      AuthEffects,
       RouterEffects
     ]),*/
     /*  TranslateModule.forRoot({
@@ -80,9 +75,7 @@ export const CORE_SERVICES: Provider[] = [
         deps: [HttpClient]
       }
     }) */
-    HttpClientInMemoryWebApiModule.forRoot(
-        InMemoryDataService
-    )
+    // InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
   ],
   providers: CORE_SERVICES
 })

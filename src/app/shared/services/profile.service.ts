@@ -1,357 +1,46 @@
 import { Injectable } from '@angular/core';
 import { AppSettings } from '../app.settings';
-/* import { UserOptions } from '../models/user'; */
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { of, Observable, BehaviorSubject } from 'rxjs';
-import {first, map} from 'rxjs/operators';
-import {User} from '../models/user';
-
-/* import { AppStore } from '../states/store.inteface';
-import { Store } from '@ngrx/store';
-import * as UserActions from 'app/shared/states/user/actions';
-import { User } from 'app/shared/models/user'; */
-import {InMemoryDataService} from './inmemory-db.service';
-
+import { HttpClient } from '@angular/common/http';
+import {of, Observable, throwError} from 'rxjs';
+import { User } from '../models/user.model';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class ProfileService {
+  private _user: User = {} as User;
 
-    private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    private mockUserStudent = {
-    uid: 'pepegarcia',
-    name: 'Pepe',
-    surname: 'García',
-    email: 'pepegarcia@gmail.com',
-    roles: [AppSettings.STUDENT_ROL.value],
-    avatar_hash: 'ef72d0e94ba5015d64de8522d845cfd2',
-    parents: [],
-    childrens: [],
-    hasFailed: false,
-    studies: {
-      action: 'SHOW',
-      entities: [
-        {
-          uid: 0,
-          level: 'Ciclo formativo',
-          title: 'Desarrollo de aplicaciones web',
-          institution: 'IES Politécnico Jesús Marin',
-          date: '1548320228',
-          certificate: false
-        },
-        {
-          uid: 1,
-          level: 'Ciclo formativo',
-          title: 'Administracion de sistemas informaticos y redes',
-          institution: 'IES Politécnico Jesús Marin',
-          date: '1397293028',
-          certificate: true
-        }
-      ]
-    },
-    experiences: {
-      action: 'SHOW',
-      entities: [
-        {
-          uid: 0,
-          company: 'Suma',
-          position: 'Junior',
-          date: '1548320228'
-        },
-        {
-          uid: 0,
-          company: 'Indra',
-          position: 'engineer',
-          date: '1548320228'
-        }
-      ]
-    },
-
-    languages: {
-      action: 'SHOW',
-      entities: [
-        {
-          uid: 0,
-          level: '6',
-          name: 'English',
-          date: '1548320228'
-        },
-        {
-          uid: 0,
-          level: '4',
-          name: 'French',
-          date: '1548320228'
-        }
-      ]
-    },
-
-    offers: {
-      entities: [
-        {
-          position: 'Professor Extraescolars programació i robòtica educativa',
-          company: 'Eixos Creativa',
-          family: 'Informática y Comunicaciones',
-          date: '30/01/2019'
-        },
-        {
-          position: 'Programaador Jr Java',
-          company: 'Ki - Works',
-          family: 'Informática y Comunicaciones',
-          date: '28/01/2019'
-        },
-        {
-          position: 'Programador.net',
-          company: 'Tecnic Consultores',
-          family: 'Informática y Comunicaciones',
-          date: '28/01/2019'
-        },
-        {
-          position: 'Programador Junior Java Spring boot',
-          company: 'GRUPO CMC',
-          family: 'Informática y Comunicaciones',
-          date: '25/01/2019'
-        },
-        {
-          position: 'Administrativa',
-          company: 'Servium',
-          family: 'Administración y Gestión',
-          date: '25/01/2019'
-        },
-        {
-          position: 'DESARROLLADOR/A SOFTWARE',
-          company: 'PEPPER',
-          family: 'Informática y Comunicaciones',
-          date: '23/01/2019'
-        }
-      ]
-    }
-  } as any /* UserOptions */;
-
- 
-
-   private mockUser = {
-    uid: 'ajvazquez',
-    name: 'Antonio Jesús',
-    surname: 'Vázquez Muñoz',
-    email: 'usuario1@mail.com',
-    roles: [AppSettings.COMPANY_ROL.value],
-    avatar_hash: 'ef72d0e94ba5015d64de8522d845cfd2',
-    parents: [],
-    childrens: [],
-    hasFailed: false,
-    studies: {
-      action: 'SHOW',
-      entities: [
-        {
-          uid: 0,
-          level: 'Ciclo formativo',
-          title: 'Desarrollo de aplicaciones web',
-          institution: 'IES Politécnico Jesús Marin',
-          date: '1548320228',
-          certificate: false
-        },
-        {
-          uid: 1,
-          level: 'Ciclo formativo',
-          title: 'Administracion de sistemas informaticos y redes',
-          institution: 'IES Politécnico Jesús Marin',
-          date: '1397293028',
-          certificate: true
-        }
-      ]
-    },
-    experiences: {
-      action: 'SHOW',
-      entities: [
-        {
-          uid: 0,
-          company: 'Suma',
-          position: 'Junior',
-          date: '1548320228'
-        },
-        {
-          uid: 0,
-          company: 'Indra',
-          position: 'engineer',
-          date: '1548320228'
-        }
-      ]
-    },
-
-    languages: {
-      action: 'SHOW',
-      entities: [
-        {
-          uid: 0,
-          level: '6',
-          name: 'English',
-          date: '1548320228'
-        },
-        {
-          uid: 0,
-          level: '4',
-          name: 'French',
-          date: '1548320228'
-        }
-      ]
-    },
-
-    offers: {
-      entities: [
-        {
-          position: 'Professor Extraescolars programació i robòtica educativa',
-          company: 'Eixos Creativa',
-          family: 'Informática y Comunicaciones',
-          date: '30/01/2019'
-        },
-        {
-          position: 'Programaador Jr Java',
-          company: 'Ki - Works',
-          family: 'Informática y Comunicaciones',
-          date: '28/01/2019'
-        },
-        {
-          position: 'Programador.net',
-          company: 'Tecnic Consultores',
-          family: 'Informática y Comunicaciones',
-          date: '28/01/2019'
-        },
-        {
-          position: 'Programador Junior Java Spring boot',
-          company: 'GRUPO CMC',
-          family: 'Informática y Comunicaciones',
-          date: '25/01/2019'
-        },
-        {
-          position: 'Administrativa',
-          company: 'Servium',
-          family: 'Administración y Gestión',
-          date: '25/01/2019'
-        },
-        {
-          position: 'DESARROLLADOR/A SOFTWARE',
-          company: 'PEPPER',
-          family: 'Informática y Comunicaciones',
-          date: '23/01/2019'
-        }
-      ]
-    }
-  } as any /* UserOptions */;
-
-
-
- getUsers(){
-   return this.http.get<any[]> (AppSettings.API_ENDPOINT_USERS).pipe(map(items => {
-
-     return items;
-   }));
- }
-
-
-  getIdiomas() {
-    return this.http.get<any[]> (AppSettings.API_ENDPOINT_IDIOMAS).pipe(map(items => {
-
-      return items;
-    }));
-  }
-  getNivelesIdiomas() {
-    return this.http.get<any[]> (AppSettings.API_ENDPOINT_NIVELES_IDIOMAS).pipe(map(items => {
-
-      return items;
-    }));
-  }
-  getProvincias() {
-    return this.http.get<any[]> (AppSettings.API_ENDPOINT_PROVINCIAS).pipe(map(items => {
-
-      return items;
-    }));
-  }
-  getMunicipios() {
-    return this.http.get<any[]> (AppSettings.API_ENDPOINT_MUNICIPIOS).pipe(map(items => {
-
-      return items;
-    }));
-  }
-  getFamilias() {
-    return this.http.get<any[]> (AppSettings.API_ENDPOINT_FAMILIAS_PROFESIONALES).pipe(map(items => {
-
-      return items;
-    }));
-  }
-  getGrados() {
-    return this.http.get<any[]> (AppSettings.API_ENDPOINT_GRADOS).pipe(map(items => {
-
-      return items;
-    }));
-  }
-  getCiclos() {
-    return this.http.get<any[]> (AppSettings.API_ENDPOINT_CICLOS).pipe(map(items => {
-
-      return items;
-    }));
-  }
-
-  getCentrosEducativos() {
-    return this.http.get<any[]> (AppSettings.API_ENDPOINT_CENTROS).pipe(map(items => {
-
-      return items;
-    }));
-  }
-  getTiposDocumento() {
-    return this.http.get<any[]>(AppSettings.API_ENDPOINT_TIPOS_DOCUMENTO).pipe(map(items => {
-
-      return items;
-    }));
-  }
-
-    getTiposTitulo() {
-      return this.http.get<any[]> (AppSettings.API_ENDPOINT_TIPOS_TITULO).pipe(map(items => {
-
-        return items;
-      }));
-    }
-
-
-
-  updateProfile(profile: any){
-      const url = AppSettings.API_ENDPOINT_USERS + '/' + profile.id;
-      return this.http
-          .put(url, profile, { headers: this.headers });
-    }
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error); // for demo purposes only
-        return Promise.reject(error.message || error);
-    }
-
-private mockUsers =[ this.mockUser, this.mockUserStudent];
   constructor(
     private http: HttpClient /* , private store$: Store<AppStore> */
   ) {}
 
-  loadProfileStudent(): Observable<any /* UserOptions */> {
-    return of(this.mockUserStudent as any);
-    //return this.http.get<UserOptions>(AppSettings.API_ENDPOINT_USER_ME);
+  set user(_user) {
+    this._user = _user;
   }
-   loadProfileCompany(): Observable<any /* UserOptions */> {
-    return of(this.mockUser as any);
-    //return this.http.get<UserOptions>(AppSettings.API_ENDPOINT_USER_ME);
+  get user() {
+    return this._user;
   }
 
-  loadProfiles():Observable<any[]>{
-    return of(this.mockUsers as any[]);
+  getUser(id: number) {
+    return this.http.get<User[]>(AppSettings.API_ENDPOINT_USERS).pipe(map(items => {
+      const filtered = items.filter(x => x.id === id);
+
+      if (filtered.length > 0)
+        return filtered[0];
+      else{
+        throwError('Error getUser');
+      }
+    }));
+  }
+  loadProfile(): Observable<any /* UserOptions */> {
+    return of(this.user as any);
+    //return this.http.get<UserOptions>(AppSettings.API_ENDPOINT_USER_ME);
   }
   logout(): void {
     /*  this.store$.dispatch(new UserActions.Logout()); */
   }
-  // public updateProfile(profile: any /* User */): Observable<any /* User */> {
-  //   /*if (Math.random() > 0.5) {
-  //     return this.http.put<TokenResponse>(AppSettings.API_ENDPOINT_USER_ME, profile);
-  //   }*/
-  //   this.mockUser = { ...profile };
-  //   return of(this.mockUser as any /* User */);
-  // }
+  public updateProfile(profile: any /* User */): Observable<any /* User */> {
+    return this.http.put<any>(AppSettings.API_ENDPOINT_USERS, { ...profile });
+  }
   public signupProfile(profile: any /* UserOptions */): Observable<boolean> {
     return this.http.post<boolean>(
       AppSettings.API_ENDPOINT_USER_CREATE,

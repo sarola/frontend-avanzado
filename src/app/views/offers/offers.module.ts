@@ -3,24 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { OffersRoutingModule } from './offers-routing.module';
 import { OffersComponent } from './offers.component';
-import {OffersCompanyComponent} from './offers-company/offers-company.component';
-import {OffersStudentComponent} from './offers-student/offers-student.component';
-import {OffersService} from '../../shared/services/offers.service';
-import {OfferDetailComponent} from './offers-student/offer-detail.component';
-import {OffersCompanyModifyComponent} from './offers-company/offers-company-modify.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SharedModule} from '../../shared/shared.module';
+import { OffersDetailComponent } from './offers-detail/offers-detail.component';
+import { OffersListComponent } from './offers-list/offers-list.component';
+import { OffersProfileComponent } from './offers-profile/offers-profile.component';
+
 @NgModule({
-  declarations: [OffersComponent, OffersCompanyComponent, OffersStudentComponent, OfferDetailComponent, OffersCompanyModifyComponent],
-  imports: [
-    CommonModule,
-    OffersRoutingModule,
-    FormsModule,
-      SharedModule,
-    ReactiveFormsModule
-
+  declarations: [
+    OffersComponent,
+    OffersProfileComponent,
+    OffersListComponent,
+    OffersDetailComponent
   ],
-
-  providers:[OffersService]
+  imports: [CommonModule, OffersRoutingModule]
 })
-export class OffersModule { }
+export class OffersModule {}

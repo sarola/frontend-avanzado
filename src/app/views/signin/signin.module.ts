@@ -1,34 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SigninRoutingModule } from './signin-routing.module';
 import { SigninComponent } from './signin.component';
-import {InMemoryDataService} from '../../shared/inmemory-db/inmemory-db.service';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import {SigninService} from '../../shared/services/signin.service';
-import { SharedModule } from '../../shared/shared.module';
-
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SigninService } from './signin.service';
 
 @NgModule({
   declarations: [SigninComponent],
-  imports: [
-    CommonModule,
-    SigninRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-   HttpClientInMemoryWebApiModule.forRoot(
-   	InMemoryDataService, {dataEncapsulation:false}),
-   HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-      delay: 300,
-      passThruUnknownUrl: true
-    })
-  ],
-  providers: [SigninService],
-  bootstrap: [SigninComponent]
-
+  imports: [SharedModule, SigninRoutingModule],
+  providers: [SigninService]
 })
-export class SigninModule { }
- 
+export class SigninModule {}

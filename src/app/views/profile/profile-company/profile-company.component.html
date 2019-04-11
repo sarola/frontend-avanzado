@@ -4,61 +4,61 @@
   <section id="datos">
     <table>
 
+
       <tbody>
       <tr>
         <th>Nombre Comercial</th>
-        <td>{{userProfile.nombre_comercial}}</td>
+        <td>{{userProfile.name}}</td>
 
       </tr>
       <tr>
         <th>Razón Social</th>
-        <td>{{userProfile.razon_social}}</td>
+        <td>{{userProfile.surname}}</td>
 
       </tr>
       <tr>
         <th>CIF</th>
-        <td>{{userProfile.num_documento}}</td>
+        <td>{{userProfile.documentNumber}}</td>
       </tr>
       <tr>
         <th>Dirección</th>
-        <td>{{userProfile.direccion}}</td>
-
+        <td>{{userProfile.address.street}}</td>
       </tr>
       <tr>
         <th>Provincia</th>
-        <td>{{userProfile.provincia}}</td>
+        <td>{{userProfile.address.province.name}}</td>
 
       </tr>
       <tr>
         <th>Municipio</th>
-        <td>{{userProfile.municipio}}</td>
+        <td>{{userProfile.address.municipe.name}}</td>
 
       </tr>
       <tr>
         <th>URL</th>
-        <td>{{userProfile.url}}</td>
+        <td>{{userProfile.name}}</td>
 
       </tr>
       <tr>
         <th>Persona de contacto</th>
-        <td>{{userProfile.datos_contacto.nombre + " " + userProfile.datos_contacto.apellidos}}</td>
+        <td>{{userProfile.name + " " + userProfile.surname}}</td>
 
       </tr>
       <tr>
         <th>Teléfono de contacto</th>
-        <td>{{userProfile.datos_contacto.telefono}}</td>
+        <td>{{userProfile.phone}}</td>
 
       </tr>
       <tr>
         <th>Email de contacto</th>
-        <td>{{userProfile.datos_contacto.email}}</td>
+        <td>{{userProfile.email}}</td>
 
       </tr>
       </tbody>
 
 
     </table>
-    <a [routerLink]="['/admin/profile/profile-company/modify']">Modificar</a>
+    <a [routerLink]="['/admin/profile/profile-company/account/profile-company-modify']">Modificar</a>
   </section>
 
 
