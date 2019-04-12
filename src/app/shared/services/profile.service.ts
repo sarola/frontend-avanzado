@@ -39,6 +39,7 @@ export class ProfileService {
     /*  this.store$.dispatch(new UserActions.Logout()); */
   }
   public updateProfile(profile: any /* User */): Observable<any /* User */> {
+    console.log('updateProfile!' + profile.name);
     return this.http.put<any>(AppSettings.API_ENDPOINT_USERS, { ...profile });
   }
   public signupProfile(profile: any /* UserOptions */): Observable<boolean> {

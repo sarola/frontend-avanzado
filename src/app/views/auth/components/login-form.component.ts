@@ -1,10 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import { Credentials } from '..//models/user';
-import {Store} from '@ngrx/store';
-import {AuthState} from '../reducers';
-import {Observable} from 'rxjs';
-
+import { Credentials } from '../../../shared/models/user';
 @Component({
   selector: 'app-login-form',
   template: `

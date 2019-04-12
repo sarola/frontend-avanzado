@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
-import { SigninService } from 'src/app/views/signin/signin.service';
 import { HttpClient } from '@angular/common/http';
 import { AppSettings } from '../../app.settings';
 import { OffersService } from '../../services/offers.service';
@@ -31,14 +30,14 @@ export class AdminLayoutComponent {
     //     this.profileService.user = user;
     //   }
     // );
-    this.user$ = store.pipe(select(state => state.userState.user));
+    this.user$ = store.pipe(select(state => state.authState.user));
     this.user$.subscribe(x =>{
       if (!x || !x.name){
-        this.router.navigate(['auth']);
+        this.router.navigate(['signin']);
       }
-      else{
-        console.log('name: ' + x.name);
-      }
+      // else{
+      //   console.log('name: ' + x.name);
+      // }
     });
 
     // this.offersService.getOffers().subscribe(offers => {

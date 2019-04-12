@@ -2,13 +2,11 @@
   Profile
 </h2>
 
-<div *ngIf="(user$ | async).roles">
- <div *ngIf="(user$ | async).roles[0] === 'student'">
-<app-profile-student> </app-profile-student>
-</div>
-
-<div *ngIf="(user$ | async).roles[0] === 'company'">
-	<app-profile-company> </app-profile-company>
-
-</div>
+<div *ngIf="(user$ | async)">
+    <div *ngIf="(user$ | async).roles[0] === 'student'">
+        <app-profile-student [user]="user$ | async"> </app-profile-student>
+    </div>
+    <div *ngIf="(user$ | async).roles[0] === 'company'">
+        <app-profile-company [user]="user$ | async"> </app-profile-company>
+    </div>
 </div>

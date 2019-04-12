@@ -6,10 +6,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoginPageComponent } from './containers/login-page.component';
 import { LoginFormComponent } from './components/login-form.component';
 
-import { AuthEffects } from './effects/auth.effects';
-import { reducers } from './reducers';
+import { AuthEffects } from '../../shared/state/auth/effects/auth.effects';
+import { reducers } from '../../reducers';
 import { AuthRoutingModule } from './auth-routing.module';
-import {SigninService} from '../signin/signin.service';
+import {SigninService} from '../../shared/services/signin.service';
 
 export const COMPONENTS = [
   LoginPageComponent,

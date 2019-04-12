@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SigninService } from './signin.service';
-import { ProfileService } from 'src/app/shared/services/profile.service';
-import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
+import * as fromAuth from '../../shared/state/auth/reducers';
+import {Credentials} from '../../shared/models/user';
+import {LoginPageActions} from '../../shared/state/auth/actions';
+import { Store, select } from '@ngrx/store';
+import {State} from '../../reducers';
 
 @Component({
   selector: 'app-signin',
@@ -12,40 +14,25 @@ import {Observable} from 'rxjs';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+  pending$ = this.store.pipe(select((state) => state.authState.pending));
+
+  error$ = this.store.pipe(select((state) => state.authState.error));
   loginForm: FormGroup;
   submitted = false;
   errorLogin = false;
 
-  constructor(
-    private signinService: SigninService,
-    private profileService: ProfileService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-  ) {}
-
+  constructor(private formBuilder: FormBuilder, private store: Store<State>) {}
   ngOnInit() {
+    this.errorLogin = false;
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.email, Validators.required]],
       password: ['', Validators.required]
     });
   }
-
-  onSubmit() {
+  onSubmit(credentials: Credentials) {
     this.submitted = true;
-    const payload = {
-      email: this.loginForm.controls.email,
-      password: this.loginForm.controls.password
-    };
-    //this.store.dispatch(new Login(payload));
-
-    this.signinService.login({ ...this.loginForm.value }).subscribe(user => {
-      if (!user) {
-        this.errorLogin = true;
-        return;
-      }
-      this.profileService.user = user[0];
-      console.log(user);
-      this.router.navigate(['admin/dashboard']);
-    });
+    this.store.dispatch(new LoginPageActions.Login({ email: credentials.email, password: credentials.password }));
+    this.error$.subscribe(error => this.errorLogin = (error != null));
   }
+
 }

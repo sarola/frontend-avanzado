@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Credentials } from '../models/user';
-import * as fromAuth from '../reducers';
-import { LoginPageActions } from '../actions';
-import {getUser} from '../reducers/login-page.reducer';
+import { Credentials } from '../../../shared/models/user';
+import * as fromAuth from '../../../shared/state/auth/reducers';
+import { LoginPageActions } from '../../../shared/state/auth/actions';
 
 @Component({
   selector: 'app-login-page',
@@ -17,8 +16,9 @@ import {getUser} from '../reducers/login-page.reducer';
   styles: [],
 })
 export class LoginPageComponent implements OnInit {
-  pending$ = this.store.pipe(select(fromAuth.getLoginPagePending));
-  error$ = this.store.pipe(select(fromAuth.getLoginPageError));
+  pending$ = this.store.pipe(select((state) => state.userState.pending));
+
+  error$ = this.store.pipe(select((state) => state.userState.error));
 
   constructor(private store: Store<fromAuth.State>) {}
 
@@ -28,7 +28,6 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(credentials: Credentials) {
     this.store.dispatch(new LoginPageActions.Login({ email: credentials.email, password: credentials.password }));
-    //this.store.dispatch(new LoginPageActions.ProfileRedirect(this.store.select(user: )));
 
   }
 }

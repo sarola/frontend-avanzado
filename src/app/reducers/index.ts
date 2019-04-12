@@ -7,7 +7,6 @@ import {
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import * as fromRouter from '@ngrx/router-store';
-import * as fromAuth from '../views/auth/reducers/login-page.reducer';
 
 /**
  * Every reducer module's default export is the reducer function itself. In
@@ -16,17 +15,17 @@ import * as fromAuth from '../views/auth/reducers/login-page.reducer';
  * notation packages up all of the exports into a single object.
  */
 
-import * as fromLayout from '../shared/reducers/layout.reducer';
-import {User} from '../shared/models/user.model';
+import * as fromAuth from '../shared/state/auth/reducers/login-page.reducer';
+import * as fromProfile from '../shared/state/profile/reducers/profile.reducer';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.
  */
-export interface State{
-  layout: fromLayout.State;
+export interface State {
   router: fromRouter.RouterReducerState;
-  userState: fromAuth.UserState;
+  authState: fromAuth.UserState;
+  userState: fromProfile.ProfileState;
 }
 
 /**
@@ -35,9 +34,9 @@ export interface State{
  * and the current or initial state and return a new immutable state.
  */
 export const reducers: ActionReducerMap<State> = {
-  layout: fromLayout.reducer,
   router: fromRouter.routerReducer,
-  userState: fromAuth.reducer,
+  authState: fromAuth.reducer,
+  userState: fromProfile.reducer,
 };
 
 // console.log all actions
@@ -63,18 +62,14 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger]
   : [];
 
-/**
- * Layout Reducers
- */
-export const getLayoutState = createFeatureSelector<State, fromLayout.State>(
-  'layout'
-);
-
-export const getShowSidenav = createSelector(
-  getLayoutState,
-  fromLayout.getShowSidenav
-);
-
-
-export const selectAuthState = createFeatureSelector<fromAuth.UserState>('auth');
-export const getUserId = createSelector(selectAuthState, fromAuth.getUserId);
+// /**
+//  * Layout Reducers
+//  */
+// export const getLayoutState = createFeatureSelector<State, fromLayout.State>(
+//   'layout'
+// );
+//
+// export const getShowSidenav = createSelector(
+//   getLayoutState,
+//   fromLayout.getShowSidenav
+// );

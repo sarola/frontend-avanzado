@@ -12,7 +12,7 @@ export class FakeBackendService implements InMemoryDbService {
         birthdate: '19/11/1984',
         phone: '644039911',
         phone2: '690940321',
-        email: 'carlos.caballero@gmail.com',
+        email: 'carlos@gmail.com',
         password: '1234',
         roles: ['student'],
         documentType: { uid: 1, name: 'NIF' },
@@ -59,7 +59,7 @@ export class FakeBackendService implements InMemoryDbService {
             level: { uid: 1, name: 'Ciclo Formativo' },
             title: {
               uid: 1,
-              name: 'Técnico Superior en Desarrollo de Aplicaciones Web'
+              name: 'Desarrollo de Aplicaciones Web'
             },
             grade: { uid: 3, name: 'Ciclo Formativo de Grado Superior' },
             date: '30/06/2007',

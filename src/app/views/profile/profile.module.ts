@@ -10,8 +10,10 @@ import { ProfileLanguageComponent } from './profile-student/language/profile-lan
 import { ProfileAccountComponent } from './profile-student/account/profile-account.component';
 import {ProfileCompanyComponent} from './profile-company/profile-company.component';
 import {ProfileCompanyModifyComponent} from './profile-company/account/profile-company-modify.component';
+import {ProfileEffects} from '../../shared/state/profile/effects/profile.effects';
+import { EffectsModule } from '@ngrx/effects';
+import {reducers} from '../../shared/state/profile/reducers';
 import {StoreModule} from '@ngrx/store';
-import {reducers} from './reducers';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,9 @@ import {reducers} from './reducers';
       ProfileCompanyModifyComponent
   ],
   imports: [SharedModule, ProfileRoutingModule,
-    StoreModule.forFeature('profile', reducers)]
+    EffectsModule.forFeature([ProfileEffects]),
+    //StoreModule.forFeature('profile', reducers),
+
+  ]
 })
 export class ProfileModule {}

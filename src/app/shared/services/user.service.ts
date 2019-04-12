@@ -16,7 +16,6 @@ export class UserService {
         return this.http.get('/users/${id}');
     }
 
-  
     update(user: any) {
         return this.http.put('/users/${user.id}', user);
     }

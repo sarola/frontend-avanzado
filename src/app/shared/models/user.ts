@@ -1,6 +1,9 @@
 
-
-export class User{
+export class Credentials {
+    email: string;
+    password: string;
+}
+export class User {
 	uid: string;
     name: string;
     surname: string;

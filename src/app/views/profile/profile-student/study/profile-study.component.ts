@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, Output} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../../../../shared/services/profile.service';
+import {Store, select} from '@ngrx/store';
 import {
   Study,
   VocationalStudy,
   CollegeStudy
 } from 'src/app/shared/models/study.model';
 import { MockData } from 'src/app/shared/mock-data';
+import {createNewUser, User} from '../../../../shared/models/user.model';
+import {State} from '../../../../reducers';
+import {LoginPageActions} from '../../../../shared/state/auth/actions';
+import {ProfileActions} from '../../../../shared/state/profile/actions';
 
 @Component({
   selector: 'app-profile-study',
@@ -22,15 +27,20 @@ export class ProfileStudyComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private store: Store<State>
   ) {
+
+    //this.store.pipe(select(state => state.userState.user)).subscribe(x => console.log('user study: ' + x));
     this.route.params.subscribe(params => {
-      const user = this.profileService.user;
       const uid = +params.uid;
+      this.store.pipe(select(state => state.userState.user)).subscribe(user => {
       this.study = (user.studies.find(study => study.uid === uid) || {}) as
         | VocationalStudy
         | CollegeStudy;
     });
+    }
+    );
     this.studiesForm = new FormGroup({
       option: new FormControl(this.study.level, [Validators.required])
     });
@@ -40,25 +50,33 @@ export class ProfileStudyComponent {
     return option1.uid === (option2 && option2.uid);
   }
   private update(study: VocationalStudy | CollegeStudy) {
-    const user = this.profileService.user;
-    const studies = user.studies;
-    const foundIndex = studies.findIndex(_study => _study.uid === study.uid);
-    studies[foundIndex] = study;
-    this.profileService.updateProfile(user);
+    const user = this.store.select(state => state.userState.user);
+    let userUpdate = createNewUser();
+    user.subscribe(useraux => {
+         useraux.studies[useraux.studies.findIndex(_study => _study.uid === study.uid)] = study;
+        userUpdate = useraux;
+        }
+    );
+    this.store.dispatch(new ProfileActions.UpdateStudy(userUpdate));
+
+    //this.profileService.updateProfile(user);
     this.router.navigate(['/admin/profile']);
   }
   private save(study: VocationalStudy | CollegeStudy) {
-    const user = this.profileService.user;
+    console.log('funcion save');
+    let user = createNewUser();
+    this.store.pipe(select(state => state.userState.user)).subscribe(_user => user = _user);
     const _study = MockData.fakeIncreaseID<VocationalStudy | CollegeStudy>(
-      user.studies,
-      study
-    );
-    user.studies = [...user.studies, _study];
-    this.profileService.updateProfile(user);
-    this.router.navigate(['/admin/profile']);
+        user.studies,
+        study
+      );
+      user.studies = [...user.studies, _study];
+
+      this.store.dispatch(new ProfileActions.SaveStudy(user));
   }
 
   saveOrUpdate(study: VocationalStudy | CollegeStudy) {
+
     study.level = this.studiesForm.get('option').value;
     this.isNew() ? this.save(study) : this.update(study);
   }

@@ -1,85 +1,35 @@
 import { Injectable } from '@angular/core';
-import { AppSettings } from '../app.settings';
-/* import { UserOptions } from '../models/user'; */
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { of, Observable, throwError, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Http } from '@angular/http';
-/* import { AppStore } from '../states/store.inteface';
-import { Store } from '@ngrx/store';
-import * as UserActions from 'app/shared/states/user/actions';
-import { User } from 'app/shared/models/user'; */
-import {InMemoryDataService} from '../inmemory-db/inmemory-db.service';
+import { HttpClient } from '@angular/common/http';
+import { AppSettings } from 'src/app/shared/app.settings';
+import {map} from 'rxjs/operators';
+import {throwError} from 'rxjs';
 
 @Injectable()
 export class SigninService {
-    users_endpoint = 'api/users';
-    user_endpoint = 'api/user';
-    users :any;
-    currentUser: Observable<{id, username, token}>;
-    currentUserSubject:  BehaviorSubject<{id, username, token}>;
+  constructor(private http: HttpClient) {}
 
-  private mockUser = {
-    id: 0,
-    username: 'email@email.com',
-    password:'password'
-   
-  } as any /* UserOptions */;
-
-  constructor(
-    private http: HttpClient/* , private store$: Store<AppStore> */
-  ) {
-    this.currentUserSubject = new BehaviorSubject<{id, username, token}>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
-  }
-   public get currentUserValue(): {id, username, token} {
-        return this.currentUserSubject.value;
-    }
-
-getUsers() {
-
-        return this.http.get<any>(this.users_endpoint);
-             
-    }
-
-    getUser(id:number) {
-
-        return this.http.get<any>(this.user_endpoint + "/" + id);
-             
-    }
-login(username:string, password:string){
-
-             return this.http.post<any>(AppSettings.API_ENDPOINT_LOGIN, { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                    this.http.get<any[]>(AppSettings.API_ENDPOINT_USERS).subscribe(x =>
-                        localStorage.setItem('usersProfile', JSON.stringify((x))));
-                }
-                return user;
-            }));
-
+  getUsers() {
+    return this.http.get<any>(AppSettings.API_ENDPOINT_USERS).toPromise();
   }
 
-loadUser(id:number){
-  return this.http.get<any>(AppSettings.API_ENDPOINT_USERS + '/' + id)
-            .pipe(map(user => {
-                if (user && user.token) {
-                    localStorage.setItem('userProfile', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
-                return user;
-            }));
+public login({email, password}){
+  return this.http.get<any[]> (AppSettings.API_ENDPOINT_USERS).pipe(map(items => {
+    const filtered = items.filter(x => x.email === email && x.password === password);
+
+    if(filtered.length > 0)
+      return filtered;
+    else{
+      throwError('Usuario incorrecto');
+    }
+  }));
 }
 
-  logout() {
-
-
-      localStorage.removeItem('currentUser');
-      this.currentUserSubject.next(null);
-
-    }
+  async login2({ email, password }): Promise<any> {
+    const users = await this.getUsers();
+    console.log('users: ' + users);
+    // Mock response from backend:
+    return users.find(
+      (user: any) => user.email === email && user.password === password
+    );
+  }
 }

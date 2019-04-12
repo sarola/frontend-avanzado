@@ -16,11 +16,6 @@ export const rootRouterConfig: Routes = [
     data: { title: 'Signin' }
   },
   {
-    path: 'auth',
-    loadChildren: './views/auth/auth.module#AuthModule',
-    data: { title: 'Signin' }
-  },
-  {
     path: 'forgot-password',
     loadChildren:
       './views/forgot-password/forgot-password.module#ForgotPasswordModule',

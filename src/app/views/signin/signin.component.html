@@ -4,8 +4,7 @@
       <img src="/assets/img/uoc_logo.png" />
 
       <h2>Login</h2>
-
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
         <div *ngIf="errorLogin" class="alert alert-danger">
           <button type="button" class="close" data-dismiss="alert">
             &times;
@@ -22,7 +21,7 @@
             formControlName="email"
             class="form-control"
             [ngClass]="{
-              'is-invalid': submitted && loginForm.controls.email.errors
+              'is-invalid': submitted && loginForm.controls.email
             }"
           />
         </div>
