@@ -90,8 +90,56 @@ export function reducer(
         pending: false,
       };
     }
-    default: {
-      return state;
-    }
+      case ProfileActions.UPDATE_ACCOUNT_SUCCESS: {
+          return {
+              ...state,
+              error: null,
+              pending: false,
+              user: action.payload,
+          };
+      }
+      case ProfileActions.UPDATE_ACCOUNT_FAILURE: {
+          return {
+              ...state,
+              study: null,
+              error: action.payload,
+              pending: false,
+          };
+      }
+      case ProfileActions.SAVE_LANGUAGE_SUCCESS: {
+          return {
+              ...state,
+              error: null,
+              pending: false,
+              user: action.payload,
+          };
+      }
+      case ProfileActions.SAVE_LANGUAGE_FAILURE: {
+          return {
+              ...state,
+              study: null,
+              error: action.payload,
+              pending: false,
+          };
+      }
+      case ProfileActions.UPDATE_LANGUAGE_SUCCESS: {
+          return {
+              ...state,
+              error: null,
+              pending: false,
+              user: action.payload,
+          };
+      }
+      case ProfileActions.UPDATE_LANGUAGE_FAILURE: {
+          return {
+              ...state,
+              study: null,
+              error: action.payload,
+              pending: false,
+          };
+      }
+      default: {
+          return state;
+      }
   }
 }

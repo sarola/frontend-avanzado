@@ -51,6 +51,45 @@ export class ProfileEffects {
                 map(() => new ProfileActions.UpdateStudySuccess(user),
                     catchError(error => of(new ProfileActions.UpdateStudyFailure(error)))
                 )
+            ))
+        // ,
+        // tap(() => this.router.navigate(['/admin/profile']))
+    );
+
+    @Effect()
+    UpdateAccount$: Observable <Action> = this.actions$.pipe(
+        ofType<ProfileActions.UpdateAccount>(ProfileActions.UPDATE_ACCOUNT),
+        map(action => action.payload),
+        exhaustMap((user: User) =>
+            this.profileService.updateProfile(user).pipe(
+                map(() => new ProfileActions.UpdateAccountSuccess(user),
+                    catchError(error => of(new ProfileActions.UpdateAccountFailure(error)))
+                )
+            )),
+        tap(() => this.router.navigate(['/admin/profile']))
+    );
+
+    @Effect()
+    SaveLanguage$: Observable <Action> = this.actions$.pipe(
+        ofType<ProfileActions.SaveLanguage>(ProfileActions.SAVE_LANGUAGE),
+        map(action => action.payload),
+        exhaustMap((user: User) =>
+            this.profileService.updateProfile(user).pipe(
+                map(userAux => new ProfileActions.SaveLanguageSuccess(user),
+                    catchError(error => of(new ProfileActions.SaveLanguageFailure(error)))
+                )
+            )),
+        tap(() => this.router.navigate(['/admin/profile']))
+    );
+    @Effect()
+    UpdateLanguage$: Observable <Action> = this.actions$.pipe(
+        ofType<ProfileActions.UpdateLanguage>(ProfileActions.UPDATE_LANGUAGE),
+        map(action => action.payload),
+        exhaustMap((user: User) =>
+            this.profileService.updateProfile(user).pipe(
+                map(() => new ProfileActions.UpdateLanguageSuccess(user),
+                    catchError(error => of(new ProfileActions.UpdateLanguageFailure(error)))
+                )
             )),
         tap(() => this.router.navigate(['/admin/profile']))
     );

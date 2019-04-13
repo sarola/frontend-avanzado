@@ -51,7 +51,7 @@ export class ProfileStudyComponent {
   }
   private update(study: VocationalStudy | CollegeStudy) {
     const user = this.store.select(state => state.userState.user);
-    let userUpdate = createNewUser();
+    let userUpdate = null;
     user.subscribe(useraux => {
          useraux.studies[useraux.studies.findIndex(_study => _study.uid === study.uid)] = study;
         userUpdate = useraux;
@@ -63,8 +63,7 @@ export class ProfileStudyComponent {
     this.router.navigate(['/admin/profile']);
   }
   private save(study: VocationalStudy | CollegeStudy) {
-    console.log('funcion save');
-    let user = createNewUser();
+    let user = null;
     this.store.pipe(select(state => state.userState.user)).subscribe(_user => user = _user);
     const _study = MockData.fakeIncreaseID<VocationalStudy | CollegeStudy>(
         user.studies,

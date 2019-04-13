@@ -13,6 +13,19 @@ export const UPDATE_STUDY = '[Study] UPDATE_STUDY';
 export const UPDATE_STUDY_SUCCESS = '[Study] UPDATE_STUDY_SUCCESS';
 export const UPDATE_STUDY_FAILURE = '[Study] UPDATE_STUDY_FAILURE';
 
+
+export const UPDATE_ACCOUNT = '[Account] UPDATE_ACCOUNT';
+export const UPDATE_ACCOUNT_SUCCESS = '[Account] UPDATE_ACCOUNT_SUCCESS';
+export const UPDATE_ACCOUNT_FAILURE = '[Account] UPDATE_ACCOUNT_FAILURE';
+
+export const SAVE_LANGUAGE = '[Account] SAVE_LANGUAGE';
+export const SAVE_LANGUAGE_SUCCESS = '[Account] SAVE_LANGUAGE_SUCCESS';
+export const SAVE_LANGUAGE_FAILURE = '[Account] SAVE_LANGUAGE_FAILURE';
+
+export const UPDATE_LANGUAGE = '[Account] UPDATE_LANGUAGE';
+export const UPDATE_LANGUAGE_SUCCESS = '[Account] UPDATE_LANGUAGE_SUCCESS';
+export const UPDATE_LANGUAGE_FAILURE = '[Account] UPDATE_LANGUAGE_FAILURE';
+
 export const GET_USER = '[User] GET_USER';
 
 export const GET_USER_SUCCESS = '[User] GET_USER_SUCCESS';
@@ -31,7 +44,6 @@ export class GetUsers implements Action {
     readonly type = GET_USERS;
 
 }
-
 
 export class GetUsersSuccess implements Action {
     readonly type = GET_USERS_SUCCESS;
@@ -125,8 +137,66 @@ export class SaveStudyFailure implements Action {
 
 }
 
+export class UpdateAccount implements Action {
+    readonly type = UPDATE_ACCOUNT;
+    constructor(public payload: User) {}
+
+}
+
+export class UpdateAccountSuccess implements Action {
+    readonly type = UPDATE_ACCOUNT_SUCCESS;
+
+    constructor(public payload: User) {}
+
+}
+export class UpdateAccountFailure implements Action {
+    readonly type = UPDATE_ACCOUNT_FAILURE;
+
+    constructor(public payload:  string) {}
+
+}
+
+
+export class UpdateLanguage implements Action {
+    readonly type = UPDATE_LANGUAGE;
+    constructor(public payload: User) {}
+
+}
+
+export class UpdateLanguageSuccess implements Action {
+    readonly type = UPDATE_LANGUAGE_SUCCESS;
+
+    constructor(public payload: User) {}
+
+}
+export class UpdateLanguageFailure implements Action {
+    readonly type = UPDATE_LANGUAGE_FAILURE;
+
+    constructor(public payload:  string) {}
+
+}
+
+export class SaveLanguage implements Action {
+    readonly type = SAVE_LANGUAGE;
+    constructor(public payload: User) {}
+
+}
+
+export class SaveLanguageSuccess implements Action {
+    readonly type = SAVE_LANGUAGE_SUCCESS;
+
+    constructor(public payload: User) {}
+
+}
+export class SaveLanguageFailure implements Action {
+    readonly type = SAVE_LANGUAGE_FAILURE;
+
+    constructor(public payload:  string) {}
+
+}
 
 
 export type All = GetStudy | GetStudySuccess | GetStudyFailure | SaveStudy | SaveStudySuccess | SaveStudyFailure
     | GetUser | GetUserSuccess | GetUserError | GetUsers | GetUsersSuccess | GetUsersError | UpdateStudy
-    | UpdateStudySuccess | UpdateStudyFailure;
+    | UpdateStudySuccess | UpdateStudyFailure  | UpdateAccount | UpdateAccountFailure | UpdateAccountSuccess
+    | SaveLanguage | SaveLanguageFailure    | SaveLanguageSuccess | UpdateLanguage | UpdateLanguageFailure | UpdateLanguageSuccess;
