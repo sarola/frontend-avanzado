@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d5c0a60-f2be-4161-8298-3902c13587f4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/reducers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/reducers/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/state/profile/actions/profile.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/state/profile/actions/profile.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/state/profile/effects/profile.effects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/state/profile/effects/profile.effects.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/state/profile/reducers/profile.reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/state/profile/reducers/profile.reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/account/profile-account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/account/profile-account.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/language/profile-language.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/language/profile-language.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/profile-study.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/profile-study.component.ts" afterDir="false" />
-    </list>
+    <list default="true" id="6d5c0a60-f2be-4161-8298-3902c13587f4" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,15 +22,6 @@
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/shared/state/profile/reducers/profile.reducer.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="92" column="30" selection-start-line="92" selection-start-column="30" selection-end-line="92" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -80,6 +62,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/reducers/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#125#0" expanded="true" />
+                <element signature="e#531#608#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/views/profile/profile-student/language/profile-language.component.ts">
           <provider selected="true" editor-type-id="text-editor">
@@ -112,11 +107,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/views/offers/offers-list/offers-list.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+            <state relative-caret-position="251">
+              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -271,6 +266,13 @@
               <item name="UOCJob" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="reducers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UOCJob" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UOCJob" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -401,12 +403,12 @@
       <workItem from="1553249875125" duration="21571000" />
       <workItem from="1553332655223" duration="24534000" />
       <workItem from="1555055122556" duration="23919000" />
-      <workItem from="1555146721064" duration="6815000" />
+      <workItem from="1555146721064" duration="8044000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247976000" />
+    <option name="totallyTimeSpent" value="249205000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -419,6 +421,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1482" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25051904" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -789,17 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reducers/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="62" column="7" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#125#0" expanded="true" />
-            <element signature="e#531#608#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app-routing.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -903,10 +895,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/views/offers/offers-list/offers-list.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+        <state relative-caret-position="251">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reducers/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#125#0" expanded="true" />
+            <element signature="e#531#608#0" expanded="true" />
           </folding>
         </state>
       </provider>
