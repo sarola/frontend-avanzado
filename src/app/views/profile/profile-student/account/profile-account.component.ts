@@ -93,7 +93,7 @@ export class ProfileAccountComponent implements OnInit {
 
   public save() {
     const user = { ...this.user, ...this.rForm.value };
-      this.store.dispatch(new ProfileActions.UpdateStudy(user));
+      this.store.dispatch(new ProfileActions.UpdateAccount(user));
 
     this.router.navigate(['/admin/profile']);
   }

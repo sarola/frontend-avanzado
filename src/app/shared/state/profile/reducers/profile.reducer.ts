@@ -3,14 +3,12 @@ import {Study} from '../../../models/study.model';
 import {User} from '../../../models/user.model';
 
 export interface ProfileState {
-  study: Study;
   error: string | null;
   pending: boolean;
   user: User;
 }
 
 export const initialState: ProfileState = {
-  study: null,
   error: null,
   pending: false,
   user: null,
@@ -25,13 +23,11 @@ export function reducer(
 
   switch (action.type) {
     case ProfileActions.GET_USER_SUCCESS: {
-      console.log("GET_USER_SUCCESS!!!" + action.payload.name);
       return {
         ...state,
         // user: action.payload,
         error: null,
         pending: false,
-        study: null,
         user: action.payload,
       };
     }
@@ -41,7 +37,6 @@ export function reducer(
        // user: action.payload,
         error: null,
         pending: false,
-        study: null,
         user: state.user,
     };
     }
@@ -52,7 +47,6 @@ export function reducer(
         ...state,
         error: action.payload,
         pending: false,
-        study: null,
         user: state.user,
       };
     }
@@ -69,7 +63,6 @@ export function reducer(
     case ProfileActions.SAVE_STUDY_FAILURE: {
       return {
         ...state,
-        study: null,
         error: action.payload,
         pending: false,
       };
@@ -85,7 +78,6 @@ export function reducer(
     case ProfileActions.UPDATE_STUDY_FAILURE: {
       return {
         ...state,
-        study: null,
         error: action.payload,
         pending: false,
       };
@@ -101,7 +93,6 @@ export function reducer(
       case ProfileActions.UPDATE_ACCOUNT_FAILURE: {
           return {
               ...state,
-              study: null,
               error: action.payload,
               pending: false,
           };
@@ -117,7 +108,6 @@ export function reducer(
       case ProfileActions.SAVE_LANGUAGE_FAILURE: {
           return {
               ...state,
-              study: null,
               error: action.payload,
               pending: false,
           };
@@ -133,7 +123,6 @@ export function reducer(
       case ProfileActions.UPDATE_LANGUAGE_FAILURE: {
           return {
               ...state,
-              study: null,
               error: action.payload,
               pending: false,
           };

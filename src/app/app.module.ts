@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './shared/state/auth/effects/auth.effects';
 import {AuthModule} from './views/auth/auth.module';
+import {OffersEffects} from './shared/state/offers/effects/offers.effects';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {AuthModule} from './views/auth/auth.module';
     HttpClientInMemoryWebApiModule.forRoot(FakeBackendService, {
       dataEncapsulation: false
     }),
-    EffectsModule.forRoot([]),
+      //importamos aquí OffersEffects para poder obtener las ofertas en AdminLayoutComponent
+    EffectsModule.forRoot([OffersEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot ({stateKey: ' router ' }),

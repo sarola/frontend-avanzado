@@ -81,6 +81,8 @@ export class ProfileEffects {
             )),
         tap(() => this.router.navigate(['/admin/profile']))
     );
+
+
     @Effect()
     UpdateLanguage$: Observable <Action> = this.actions$.pipe(
         ofType<ProfileActions.UpdateLanguage>(ProfileActions.UPDATE_LANGUAGE),

@@ -5,7 +5,9 @@ import {ProfileService} from '../../../../shared/services/profile.service';
 import {Municipe, Province} from '../../../../shared/models/user.model';
 import {MockData} from '../../../../shared/mock-data';
 import {documentNumberValidator} from '../../../../shared/directives/document-number-validator.directive';
-
+import {State} from '../../../../reducers';
+import {Store, select} from '@ngrx/store';
+import {ProfileActions} from '../../../../shared/state/profile/actions';
 @Component({
   selector: 'app-profile-company-modify',
   templateUrl: './profile-company-modify.component.html',
@@ -20,8 +22,8 @@ export class ProfileCompanyModifyComponent implements OnInit {
 
 
 
-    constructor(private formBuilder: FormBuilder, private router: Router, private profileService: ProfileService) {
-    this.userProfile = this.profileService.user;
+    constructor(private formBuilder: FormBuilder, private router: Router, private profileService: ProfileService, private store: Store<State>) {
+        this.store.pipe(select (state => state.userState.user)).subscribe(user => this.userProfile = user);
         this.provincias = MockData.PROVINCES;
         this.municipes = MockData.MUNICIPES;
 
@@ -52,10 +54,8 @@ export class ProfileCompanyModifyComponent implements OnInit {
   }
 
   onSubmit() {
-        
-      const user = { ...this.profileService.user, ...this.profileCompanyForm.value };
-      this.profileService.user = user;
-      this.profileService.updateProfile(user);
+      const user = { ...this.userProfile, ...this.profileCompanyForm.value };
+        this.store.dispatch(new ProfileActions.UpdateAccount(user));
       this.router.navigate(['/admin/profile']);
 
 

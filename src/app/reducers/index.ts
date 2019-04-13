@@ -17,6 +17,7 @@ import * as fromRouter from '@ngrx/router-store';
 
 import * as fromAuth from '../shared/state/auth/reducers/login-page.reducer';
 import * as fromProfile from '../shared/state/profile/reducers/profile.reducer';
+import * as fromOffers from '../shared/state/offers/reducers/offers.reducer';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -26,6 +27,7 @@ export interface State {
   router: fromRouter.RouterReducerState;
   authState: fromAuth.UserState;
   userState: fromProfile.ProfileState;
+  offersState: fromOffers.OfferState;
 }
 
 /**
@@ -37,6 +39,7 @@ export const reducers: ActionReducerMap<State> = {
   router: fromRouter.routerReducer,
   authState: fromAuth.reducer,
   userState: fromProfile.reducer,
+  offersState: fromOffers.reducer,
 };
 
 // console.log all actions
