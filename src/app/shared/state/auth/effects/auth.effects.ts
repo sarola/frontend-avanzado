@@ -19,28 +19,11 @@ export class AuthEffects {
       map(action => action.payload),
       exhaustMap((auth: Credentials) =>
         this.signinService.login({email: auth.email, password: auth.password}).pipe(
-           // map(user => this.profileService.user = user [0]),
           map(user => user ? new LoginPageActions.LoginSuccess(user[0]) : new LoginPageActions.LoginFailure("usuario incorrecto")),
           catchError(error => of(new LoginPageActions.LoginFailure(error)))
         )
       )
-      // ,
-      // tap(() => this.router.navigate(['/admin/dashboard', this.profileService.user.id]))
     );
-// @Effect()
-// GetUser$: Observable <Action> = this.actions$.pipe(
-//     ofType<LoginPageActions.GetUser>(LoginPageActions.GET_USER),
-//     map(action => action.payload),
-//     exhaustMap((id: number) =>
-//         this.profileService.getUser(id).pipe(
-//             map(user => new LoginPageActions.GetUserSuccess(user)),
-//             catchError(error => of(new LoginPageActions.LoginFailure(error)))
-//         )
-//     )
-//     // ,
-//     // tap(() => this.router.navigate(['/admin/dashboard', this.profileService.user.id]))
-// );
-
     @Effect()
     LoginSuccess$: Observable <Action> = this.actions$.pipe(
         ofType<LoginPageActions.LoginSuccess>(LoginPageActions.LOGIN_SUCCESS),
@@ -49,19 +32,10 @@ export class AuthEffects {
         catchError(error => of(new LoginPageActions.LoginFailure(error))),
         tap(() => this.router.navigate(['/admin/profile']))
     );
-@Effect()
-LoginRedirect$: Observable<Action> = this.actions$.pipe(
-            ofType<LoginPageActions.LoginRedidrect>(LoginPageActions.LOGIN_REDIRECT),
-            tap(authed => {
-                this.router.navigate(['/auth']);
-            })
-        );
-
 
   constructor(
     private actions$: Actions,
     private signinService: SigninService,
-    private profileService: ProfileService,
     private router: Router,
   ) {
   }

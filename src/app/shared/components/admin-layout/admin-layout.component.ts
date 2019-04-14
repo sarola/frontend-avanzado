@@ -8,6 +8,7 @@ import {select, Store} from '@ngrx/store';
 import {State} from '../../../reducers';
 import {Observable} from 'rxjs';
 import {User} from '../../models/user.model';
+import {OffersAction} from '../../state/offers/actions';
 
 @Component({
   selector: 'app-admin-layout',
@@ -20,7 +21,7 @@ export class AdminLayoutComponent {
   /* MOCK PURPOSES */
   constructor(
     // private profileService: ProfileService,
-    // private offersService: OffersService,
+     private offersService: OffersService,
     private router: Router,
     private http: HttpClient,
     private store: Store<State>
@@ -31,7 +32,7 @@ export class AdminLayoutComponent {
     //   }
     // );
     this.user$ = store.pipe(select(state => state.authState.user));
-    this.user$.subscribe(x =>{
+    this.user$.subscribe(x => {
       if (!x || !x.name){
         this.router.navigate(['signin']);
       }
@@ -39,6 +40,7 @@ export class AdminLayoutComponent {
       //   console.log('name: ' + x.name);
       // }
     });
+    this.store.dispatch(new OffersAction.GetOffers());
 
     // this.offersService.getOffers().subscribe(offers => {
     //   this.offersService.offers = offers;

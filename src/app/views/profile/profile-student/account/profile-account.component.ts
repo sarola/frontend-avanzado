@@ -13,7 +13,7 @@ import {
 } from 'src/app/shared/models/user.model';
 import { documentNumberValidator } from 'src/app/shared/directives/document-number-validator.directive';
 import {State} from '../../../../reducers';
-import {ProfileActions} from '../../../../shared/state/profile/actions';
+import {AccountActions} from '../../../../shared/state/profile/actions';
 
 @Component({
   selector: 'app-profile-account',
@@ -93,7 +93,7 @@ export class ProfileAccountComponent implements OnInit {
 
   public save() {
     const user = { ...this.user, ...this.rForm.value };
-      this.store.dispatch(new ProfileActions.UpdateStudy(user));
+      this.store.dispatch(new AccountActions.UpdateAccount(user));
 
     this.router.navigate(['/admin/profile']);
   }

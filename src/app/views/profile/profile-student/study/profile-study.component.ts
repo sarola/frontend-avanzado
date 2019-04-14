@@ -12,7 +12,7 @@ import { MockData } from 'src/app/shared/mock-data';
 import {createNewUser, User} from '../../../../shared/models/user.model';
 import {State} from '../../../../reducers';
 import {LoginPageActions} from '../../../../shared/state/auth/actions';
-import {ProfileActions} from '../../../../shared/state/profile/actions';
+import {StudyActions} from '../../../../shared/state/profile/actions';
 
 @Component({
   selector: 'app-profile-study',
@@ -57,7 +57,7 @@ export class ProfileStudyComponent {
         userUpdate = useraux;
         }
     );
-    this.store.dispatch(new ProfileActions.UpdateStudy(userUpdate));
+    this.store.dispatch(new StudyActions.UpdateStudy(userUpdate));
 
     //this.profileService.updateProfile(user);
     this.router.navigate(['/admin/profile']);
@@ -71,7 +71,7 @@ export class ProfileStudyComponent {
       );
       user.studies = [...user.studies, _study];
 
-      this.store.dispatch(new ProfileActions.SaveStudy(user));
+      this.store.dispatch(new StudyActions.SaveStudy(user));
   }
 
   saveOrUpdate(study: VocationalStudy | CollegeStudy) {

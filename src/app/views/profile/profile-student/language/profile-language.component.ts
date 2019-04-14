@@ -12,7 +12,7 @@ import {
 import { dateValidator } from 'src/app/shared/directives/date-validator.directive';
 import {State} from '../../../../reducers';
 import {CollegeStudy, VocationalStudy} from '../../../../shared/models/study.model';
-import {ProfileActions} from '../../../../shared/state/profile/actions';
+import {LanguageActions} from '../../../../shared/state/profile/actions';
 
 @Component({
   selector: 'app-profile-language',
@@ -80,16 +80,9 @@ export class ProfileLanguageComponent implements OnInit {
           userUpdate = useraux;
         }
     );
-    this.store.dispatch(new ProfileActions.UpdateLanguage(userUpdate));
+    this.store.dispatch(new LanguageActions.UpdateLanguage(userUpdate));
 
 
-    // const user = this.profileService.user;
-    // const languages = user.languages;
-    // const foundIndex = languages.findIndex(
-    //   _language => _language.uid === language.uid
-    // );
-    // languages[foundIndex] = language;
-    // this.profileService.updateProfile(user);
     this.router.navigate(['/admin/profile']);
   }
   private save(language: Language) {
@@ -101,15 +94,8 @@ export class ProfileLanguageComponent implements OnInit {
     );
     user.languages = [...user.languages, _language];
 
-    this.store.dispatch(new ProfileActions.SaveLanguage(user));
-    //
-    // const user = this.profileService.user;
-    // const _language = MockData.fakeIncreaseID<Language>(
-    //   user.languages,
-    //   language
-    // );
-    // user.languages = [...user.languages, _language];
-    // this.profileService.updateProfile(user);
+    this.store.dispatch(new LanguageActions.SaveLanguage(user));
+
     this.router.navigate(['/admin/profile']);
   }
 
