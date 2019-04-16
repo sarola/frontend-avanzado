@@ -7,8 +7,8 @@ import { ProfileService } from 'src/app/shared/services/profile.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  constructor(profileService: ProfileService) {
-    console.log(profileService.user);
+  constructor() {
+    //console.log(profileService.user);
   }
 
   /*   constructor(
