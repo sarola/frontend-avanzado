@@ -10,7 +10,7 @@ export class User {
     email: string;
     roles: [];
     avatar_hash: string;
-    studies: 
+    studies:
    {
           uid: number,
           level: string,
@@ -19,7 +19,6 @@ export class User {
           date: string,
           certificate: boolean
    }[];
-            
      
     /*experiences: 
 

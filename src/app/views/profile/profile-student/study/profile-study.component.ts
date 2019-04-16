@@ -10,9 +10,10 @@ import {
 } from 'src/app/shared/models/study.model';
 import { MockData } from 'src/app/shared/mock-data';
 import {createNewUser, User} from '../../../../shared/models/user.model';
-import {State} from '../../../../reducers';
+import {State} from '../../../../shared/state/root.reducer';
 import {LoginPageActions} from '../../../../shared/state/auth/actions';
 import {StudyActions} from '../../../../shared/state/profile/actions';
+import {selectProfileState, selectStudiesState} from '../../../../shared/state/profile/selectors/profile.selector';
 
 @Component({
   selector: 'app-profile-study',
@@ -34,8 +35,8 @@ export class ProfileStudyComponent {
     //this.store.pipe(select(state => state.userState.user)).subscribe(x => console.log('user study: ' + x));
     this.route.params.subscribe(params => {
       const uid = +params.uid;
-      this.store.pipe(select(state => state.userState.user)).subscribe(user => {
-      this.study = (user.studies.find(study => study.uid === uid) || {}) as
+      this.store.pipe(select(selectStudiesState)).subscribe(studies => {
+      this.study = (studies.find(study => study.uid === uid) || {}) as
         | VocationalStudy
         | CollegeStudy;
     });
@@ -50,7 +51,7 @@ export class ProfileStudyComponent {
     return option1.uid === (option2 && option2.uid);
   }
   private update(study: VocationalStudy | CollegeStudy) {
-    const user = this.store.select(state => state.userState.user);
+    const user = this.store.select(selectProfileState);
     let userUpdate = null;
     user.subscribe(useraux => {
          useraux.studies[useraux.studies.findIndex(_study => _study.uid === study.uid)] = study;

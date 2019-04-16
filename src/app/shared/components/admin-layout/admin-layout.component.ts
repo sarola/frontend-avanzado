@@ -5,7 +5,7 @@ import { AppSettings } from '../../app.settings';
 import { OffersService } from '../../services/offers.service';
 import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
-import {State} from '../../../reducers';
+import {State} from '../../../shared/state/root.reducer';
 import {Observable} from 'rxjs';
 import {User} from '../../models/user.model';
 import {OffersAction} from '../../state/offers/actions';

@@ -10,11 +10,10 @@ import { FakeBackendService } from './shared/inmemory-db/fake-backend.service';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './shared/state/root.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
-import {AuthEffects} from './shared/state/auth/effects/auth.effects';
 import {AuthModule} from './views/auth/auth.module';
 import {OffersEffects} from './shared/state/offers/effects/offers.effects';
 

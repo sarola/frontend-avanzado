@@ -7,7 +7,7 @@ import { LoginPageComponent } from './containers/login-page.component';
 import { LoginFormComponent } from './components/login-form.component';
 
 import { AuthEffects } from '../../shared/state/auth/effects/auth.effects';
-import { reducers } from '../../reducers';
+import { reducers } from '../../shared/state/root.reducer';
 import { AuthRoutingModule } from './auth-routing.module';
 import {SigninService} from '../../shared/services/signin.service';
 

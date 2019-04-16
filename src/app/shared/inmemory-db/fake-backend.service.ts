@@ -139,61 +139,10 @@ export class FakeBackendService implements InMemoryDbService {
         },
         avatar_hash: 'assets/img/perfil.png',
         studies: [
-          {
 
-            uid: 1,
-            level: {uid: 1, name: 'Ciclo Formativo'},
-            category: {uid: 2, name: 'Informática y comunicaciones'},
-            institution: {
-              uid: 2,
-              name: 'IES Politécnico Jesús Marin'
-            },
-            title: {
-              uid: 2,
-              name: 'Administracion de sistemas informaticos y redes'
-            },
-            grade: {
-              uid: 3,
-              name: 'Ciclo Formativo de Grado Superior'
-            },
-            date: '30/06/2005',
-            dual: false,
-            bilingue: true,
-            certificate: true
-          },
-          {
-            uid: 2,
-            institution: {
-              uid: 2,
-              name: 'IES Politécnico Jesús Marin'
-            },
-            category: {uid: 2, name: 'Informática y comunicaciones'},
-            level: {uid: 1, name: 'Ciclo Formativo'},
-            title: {
-              uid: 1,
-              name: 'Técnico Superior en Desarrollo de Aplicaciones Web'
-            },
-            grade: {uid: 3, name: 'Ciclo Formativo de Grado Superior'},
-            date: '30/06/2007',
-            dual: true,
-            bilingue: false,
-            certificate: false
-          }
         ],
         experiencies: [],
         languages: [
-          {
-            uid: 1,
-            level: {uid: 5, name: 'C1'},
-            name: {uid: 1, name: 'Inglés'},
-            date: '30/06/2005'
-          },
-          {
-            uid: 2,
-            level: {uid: 4, name: 'B2'},
-            name: {uid: 2, name: 'Francés'},
-            date: '30/06/1998'
-          }
 
         ],
         offers: []

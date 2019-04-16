@@ -3,7 +3,9 @@ import { OffersService } from 'src/app/shared/services/offers.service';
 import { Offer } from 'src/app/shared/models/offer.model';
 import { ProfileService } from 'src/app/shared/services/profile.service';
 import {Store, select} from '@ngrx/store';
-import {State} from '../../../reducers';
+import {State} from '../../../shared/state/root.reducer';
+import {selectOffersState} from '../../../shared/state/offers/selectors/offers.selector';
+import {selectProfileState} from '../../../shared/state/profile/selectors/profile.selector';
 
 @Component({
   selector: 'app-offers-list',
@@ -23,13 +25,12 @@ export class OffersListComponent implements OnInit {
 
   private selectOffers() {
 
-  this.store.pipe(select(state => state.offersState)).subscribe(state => this.offers = state.offers);
+  this.store.pipe(select(selectOffersState)).subscribe(state => this.offers = state);
 
     let user = null;
-    this.store.pipe(select(state => state.userState)).subscribe(state => user = state.user);
 
+    this.store.pipe(select(selectProfileState)).subscribe(state => user = state);
     const studiesOfUser = user.studies;
-    console.log("user ofers: " + user.name);
     const offersOfUser = user.offers;
     this.offersStudy = this.offers
       .filter(offer =>

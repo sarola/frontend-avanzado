@@ -52,6 +52,18 @@ export class ProfileEffects {
                 )
             ))
     );
+    @Effect()
+    DeleteStudy$: Observable <Action> = this.actions$.pipe(
+        ofType<StudyActions.DeleteStudy>(StudyActions.DELETE_STUDY),
+        map(action => action.payload),
+        exhaustMap((user: User) =>
+            this.profileService.updateProfile(user).pipe(
+                map(() => new StudyActions.DeleteStudySuccess(user),
+                    catchError(error => of(new StudyActions.DeleteStudyFailure(error)))
+                )
+            ))
+    );
+
 
     @Effect()
     UpdateAccount$: Observable <Action> = this.actions$.pipe(
@@ -74,8 +86,7 @@ export class ProfileEffects {
                 map(userAux => new LanguageActions.SaveLanguageSuccess(user),
                     catchError(error => of(new LanguageActions.SaveLanguageFailure(error)))
                 )
-            )),
-        tap(() => this.router.navigate(['/admin/profile']))
+            ))
     );
     @Effect()
     UpdateLanguage$: Observable <Action> = this.actions$.pipe(
@@ -86,7 +97,17 @@ export class ProfileEffects {
                 map(() => new LanguageActions.UpdateLanguageSuccess(user),
                     catchError(error => of(new LanguageActions.UpdateLanguageFailure(error)))
                 )
-            )),
-        tap(() => this.router.navigate(['/admin/profile']))
+            ))
+    );
+    @Effect()
+    DeleteLanguage$: Observable <Action> = this.actions$.pipe(
+        ofType<LanguageActions.DeleteLanguage>(LanguageActions.DELETE_LANGUAGE),
+        map(action => action.payload),
+        exhaustMap((user: User) =>
+            this.profileService.updateProfile(user).pipe(
+                map(() => new LanguageActions.DeleteLanguageSuccess(user),
+                    catchError(error => of(new LanguageActions.DeleteLanguageFailure(error)))
+                )
+            ))
     );
 }

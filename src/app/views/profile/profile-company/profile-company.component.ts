@@ -3,7 +3,7 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProfileService} from '../../../shared/services/profile.service';
 import {select, Store} from '@ngrx/store';
-import {State} from '../../../reducers';
+import {State} from '../../../shared/state/root.reducer';
 import {User} from '../../../shared/models/user.model';
 
 @Component({

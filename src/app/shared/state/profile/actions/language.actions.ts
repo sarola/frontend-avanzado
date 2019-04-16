@@ -9,6 +9,10 @@ export const UPDATE_LANGUAGE = '[Account] UPDATE_LANGUAGE';
 export const UPDATE_LANGUAGE_SUCCESS = '[Account] UPDATE_LANGUAGE_SUCCESS';
 export const UPDATE_LANGUAGE_FAILURE = '[Account] UPDATE_LANGUAGE_FAILURE';
 
+export const DELETE_LANGUAGE = '[Account] DELETE_LANGUAGE';
+export const DELETE_LANGUAGE_SUCCESS = '[Account] DELETE_LANGUAGE_SUCCESS';
+export const DELETE_LANGUAGE_FAILURE = '[Account] DELETE_LANGUAGE_FAILURE';
+
 
 
 
@@ -49,7 +53,25 @@ export class SaveLanguageFailure implements Action {
     constructor(public payload:  string) {}
 
 }
+export class DeleteLanguage implements Action {
+    readonly type = DELETE_LANGUAGE;
+    constructor(public payload: User) {}
 
+}
+
+export class DeleteLanguageSuccess implements Action {
+    readonly type = DELETE_LANGUAGE_SUCCESS;
+
+    constructor(public payload: User) {}
+
+}
+export class DeleteLanguageFailure implements Action {
+    readonly type = DELETE_LANGUAGE_FAILURE;
+
+    constructor(public payload:  string) {}
+
+}
 
 export type All = SaveLanguage | SaveLanguageFailure    | SaveLanguageSuccess
-    | UpdateLanguage | UpdateLanguageFailure | UpdateLanguageSuccess;
+    | UpdateLanguage | UpdateLanguageFailure | UpdateLanguageSuccess
+    | DeleteLanguage | DeleteLanguageFailure | DeleteLanguageSuccess;

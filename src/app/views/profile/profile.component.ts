@@ -6,7 +6,8 @@ import {ActivatedRoute} from '@angular/router';
 import * as fromProfile from '../../shared/state/profile/reducers';
 import {Study} from '../../shared/models/study.model';
 import {ProfileActions} from '../../shared/state/profile/actions';
-import {State} from '../../reducers';
+import {State} from '../../shared/state/root.reducer';
+import {selectProfileState} from '../../shared/state/profile/selectors/profile.selector';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class ProfileComponent implements OnInit {
     this.userId = -1;
     this.store.pipe(select((state) => state.authState.user.id)).subscribe(id => this.userId = id);
 
-    this.user$ = this.store.pipe(select(state => state.userState.user));
+    this.user$ = this.store.pipe(select(selectProfileState));
     this.store.dispatch(new ProfileActions.GetUser(this.userId));
 
   }

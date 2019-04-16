@@ -12,7 +12,7 @@ import {
   Province
 } from 'src/app/shared/models/user.model';
 import { documentNumberValidator } from 'src/app/shared/directives/document-number-validator.directive';
-import {State} from '../../../../reducers';
+import {State} from '../../../../shared/state/root.reducer';
 import {AccountActions} from '../../../../shared/state/profile/actions';
 
 @Component({
@@ -84,7 +84,7 @@ export class ProfileAccountComponent implements OnInit {
           Validators.required
         ]),
         aboutMe: new FormControl(this.user.aboutMe),
-        otherCompetences: new FormControl(this.user.aboutMe),
+        otherCompetences: new FormControl(this.user.otherCompetences),
         license: new FormControl(this.user.license)
       },
       documentNumberValidator()

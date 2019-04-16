@@ -4,9 +4,10 @@ import { Offer } from 'src/app/shared/models/offer.model';
 import { ProfileService } from 'src/app/shared/services/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user.model';
-import {State} from '../../../reducers';
+import {State} from '../../../shared/state/root.reducer';
 import {Store, select} from '@ngrx/store';
 import {OffersAction} from '../../../shared/state/offers/actions';
+import {selectProfileState} from '../../../shared/state/profile/selectors/profile.selector';
 
 @Component({
   selector: 'app-offers-detail',
@@ -22,7 +23,7 @@ export class OffersDetailComponent implements OnInit {
     private router: Router,
     private store: Store<State>
   ) {
-    this.store.pipe(select(state => state.userState.user)).subscribe(user => this.user = user);
+    this.store.pipe(select(selectProfileState)).subscribe(user => this.user = user);
     this.route.params.subscribe(params => {
       this.store.pipe(select(state => state.offersState.offers)).subscribe(offers => {
         const offerID = +params.id;
@@ -40,7 +41,7 @@ export class OffersDetailComponent implements OnInit {
     this.user.offers = this.user.offers.filter(
       _offer => _offer.id !== this.offer.id
     );
-    this.store.dispatch(new OffersAction.SubscribeOffer(this.user));
+    this.store.dispatch(new OffersAction.UnSubscribeOffer(this.user));
 
     this.router.navigate(['/admin/offers']);
   }

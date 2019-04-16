@@ -10,9 +10,9 @@ import {
   LanguageName
 } from 'src/app/shared/models/language.model';
 import { dateValidator } from 'src/app/shared/directives/date-validator.directive';
-import {State} from '../../../../reducers';
-import {CollegeStudy, VocationalStudy} from '../../../../shared/models/study.model';
+import {State} from '../../../../shared/state/root.reducer';
 import {LanguageActions} from '../../../../shared/state/profile/actions';
+import {selectLanguagesState, selectProfileState} from '../../../../shared/state/profile/selectors/profile.selector';
 
 @Component({
   selector: 'app-profile-language',
@@ -33,8 +33,8 @@ export class ProfileLanguageComponent implements OnInit {
   ) {
     this.route.params.subscribe(params => {
       const uid = +params.uid;
-      this.store.pipe(select(state => state.userState.user)).subscribe(user => {
-        this.language = (user.languages.find(language => language.uid === uid) || {}) as
+      this.store.pipe(select(selectLanguagesState)).subscribe(langs => {
+        this.language = (langs.find(language => language.uid === uid) || {}) as
             Language;
       });
       // const user = this.profileService.user;
@@ -73,7 +73,7 @@ export class ProfileLanguageComponent implements OnInit {
     return option1.uid === (option2 && option2.uid);
   }
   private update(language: Language) {
-    const user = this.store.select(state => state.userState.user);
+    const user = this.store.select(selectProfileState);
     let userUpdate = null;
     user.subscribe(useraux => {
           useraux.languages[useraux.languages.findIndex(_language => _language.uid === language.uid)] = language;
@@ -82,12 +82,11 @@ export class ProfileLanguageComponent implements OnInit {
     );
     this.store.dispatch(new LanguageActions.UpdateLanguage(userUpdate));
 
-
     this.router.navigate(['/admin/profile']);
   }
   private save(language: Language) {
     let user = null;
-    this.store.pipe(select(state => state.userState.user)).subscribe(_user => user = _user);
+    this.store.pipe(select(selectProfileState)).subscribe(_user => user = _user);
     const _language = MockData.fakeIncreaseID<Language>(
         user.languages,
         language

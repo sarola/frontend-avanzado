@@ -1,11 +1,9 @@
 import {
   ActionReducerMap,
 } from '@ngrx/store';
-import * as fromRoot from '../../../../reducers';
+import * as fromRoot from '../../../../shared/state/root.reducer';
 import * as fromProfile from '../reducers/profile.reducer';
-import {StudyState} from './study.reducer';
-import {AccountState} from './account.reducer';
-import {LanguageState} from './language.reducer';
+
 
 export interface ProfileState {
   status: fromProfile.ProfileState;
@@ -13,9 +11,6 @@ export interface ProfileState {
 
 export interface State extends fromRoot.State {
   user: ProfileState;
-  study: StudyState;
-  language: LanguageState;
-  account: AccountState;
 
 }
 

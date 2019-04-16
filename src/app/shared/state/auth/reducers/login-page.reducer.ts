@@ -25,24 +25,19 @@ export function reducer(
     | LoginPageActions.Login
   | LoginPageActions.ProfileRedirect
 ): UserState {
-  console.log('state: ' + state + ', action: ' + action.payload);
 
   switch (action.type) {
     case LoginPageActions.LOGIN: {
       return {
         ...state,
-        //user: null,
         error: null,
         pending: true,
         userId: -1,
       };
     }
     case LoginPageActions.LOGIN_SUCCESS: {
-      console.log("loginsuccessss000");
-      console.log("payload: " + action.payload.name);
       return {
         ...state,
-       // user: action.payload,
         error: null,
         pending: true,
         userId: action.payload.id,

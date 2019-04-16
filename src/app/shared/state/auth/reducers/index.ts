@@ -3,7 +3,7 @@ import {
   createFeatureSelector,
   ActionReducerMap,
 } from '@ngrx/store';
-import * as fromRoot from '../../../../reducers';
+import * as fromRoot from '../../../../shared/state/root.reducer';
 import * as fromLoginPage from '../reducers/login-page.reducer';
 import {UserState} from '../reducers/login-page.reducer';
 
