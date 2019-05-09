@@ -1,0 +1,35 @@
+<!-- <div class="app-admin-wrap" [dir]="layoutConf.dir"> -->
+<!-- Header for top navigation layout -->
+<!-- ONLY REQUIRED FOR **TOP** NAVIGATION LAYOUT -->
+<!--   <app-header-top
+    *ngIf="layoutConf.navigationPos === 'top'"
+    [notificPanel]="notificationPanel"
+  >
+  </app-header-top> -->
+
+<header>
+  <mat-toolbar fxFlex fxLayout="row" fxLayoutAlign="space-around center" color="primary">
+
+      <a routerLink="/"><span>Logout</span></a>
+      <a routerLink="/admin/"><span>Dashboard</span></a>
+  </mat-toolbar>
+
+</header>
+
+
+<mat-sidenav-container  color="primary" class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav"  color="primary" fixedInViewport="true"  mode="side"
+                 opened>
+        <mat-nav-list  color="primary">
+            <a mat-list-item routerLink="/admin/profile">Profile</a>
+            <a mat-list-item routerLink="/admin/offers">Offers</a>
+            <a mat-list-item routerLink="/admin/config">Config</a>
+            <a mat-list-item routerLink="/admin/my-offers">My offers</a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

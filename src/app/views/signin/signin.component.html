@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="div-login">
+      <img src="/assets/img/uoc_logo.png" />
+
+      <mat-toolbar color="primary" >Login</mat-toolbar>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+
+          <div class="container">
+
+              <mat-error *ngIf="errorLogin"> There is an error in email or password</mat-error>
+
+            <div class="form-group">
+            <mat-form-field class="input">
+              <input matInput placeholder="Username" id="email"
+                     formControlName="email"
+                     class="form-control" required
+                     [ngClass]="{
+              'is-invalid': submitted && loginForm.controls.email.errors
+            }">
+              <mat-error *ngIf="loginForm.controls.email.errors"> There is an error in email</mat-error>
+
+            </mat-form-field>
+          </div>
+            <div class="form-group">
+              <mat-form-field class="input">
+                <input matInput type="password" placeholder="Password*" id="password"
+                       formControlName="password"
+                       class="form-control"
+                       [ngClass]="{
+              'is-invalid': submitted && loginForm.controls.password.errors
+            }">
+                <mat-error *ngIf="loginForm.controls.password.errors"> There is an error in password</mat-error>
+
+              </mat-form-field>
+            </div>
+
+        <div class="botones-login" fxLayout="row" fxLayoutAlign="space-between">
+          <button mat-raised-button [disabled]="loginForm.invalid" color = "primary">
+            Login
+          </button>
+          <button mat-raised-button  color = "primary"  routerLink="/forgot-password">
+            Remember password
+          </button>
+        </div>
+          </div>
+
+      </form>
+    </div>
+  </div>
+</div>
