@@ -1,0 +1,48 @@
+<h3>Mis Ofertas</h3>
+
+<div class="table mb-3em">
+  <table mat-table [dataSource]="offers" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="job">
+      <th mat-header-cell *matHeaderCellDef> Puesto  </th>
+      <td mat-cell *matCellDef="let element"> {{element.job.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <th mat-header-cell *matHeaderCellDef> Empresa  </th>
+      <td mat-cell *matCellDef="let element"> {{element.company.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Familia  </th>
+      <td mat-cell *matCellDef="let element"> {{element.category.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Fecha  </th>
+      <td mat-cell *matCellDef="let element"> {{element.date | date: 'dd-MM-yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="province">
+      <th mat-header-cell *matHeaderCellDef> Provincia  </th>
+      <td mat-cell *matCellDef="let element"> {{element.province.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="municipe">
+      <th mat-header-cell *matHeaderCellDef> Municipio  </th>
+      <td mat-cell *matCellDef="let element"> {{element.municipe.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Acciones  </th>
+      <td mat-cell *matCellDef="let offer">
+        <a mat-raised-button class="btn-acciones" [routerLink]="['/admin/offers/', offer.id]">Ver detalle</a>
+      </td>
+
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+
