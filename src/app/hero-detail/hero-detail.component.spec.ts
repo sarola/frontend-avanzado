@@ -42,7 +42,9 @@ describe('HeroDetailComponent', () => {
   });
 
 
-  fit('should have a h2 with hero name', () => {
+  it('should have a h2 with hero name', () => {
+    component.hero = {id: 1, name: 'Superman'};
+
     fixture.detectChanges();
     const h2 = fixture.debugElement.nativeElement.querySelector('h2');
 
@@ -52,7 +54,7 @@ describe('HeroDetailComponent', () => {
     expect(h2.textContent).toContain('SUPERMAN Details');
   });
 
-  fit('should call back when click back button', () => {
+  it('should call back when click back button', () => {
     component.hero = {id: 1, name: 'Superman'};
     fixture.detectChanges();
 
@@ -65,7 +67,7 @@ describe('HeroDetailComponent', () => {
     expect(component.goBack).toHaveBeenCalled();
   });
 
-  fit('should call save when click save button', () => {
+  it('should call save when click save button', () => {
     const hero = {id: 1, name: 'Superman'};
     httpClientSpy.put.and.returnValue(asyncData(hero));
 
@@ -75,10 +77,17 @@ describe('HeroDetailComponent', () => {
     const input = fixture.debugElement.nativeElement.querySelector('input');
     input.value = 'Spiderman';
     input.dispatchEvent(new Event('input'));
-   // fixture.detectChanges();
+    fixture.detectChanges();
 
     console.log(input.value);
     expect(input.value).toEqual('Spiderman');
+
+    const h2 = fixture.debugElement.nativeElement.querySelector('h2');
+
+    if (!h2) {
+      fail('no h2');
+    }
+    expect(h2.textContent).toContain('SPIDERMAN Details');
 
     const buttonSave = fixture.nativeElement.querySelector('button:last-child');
     expect(buttonSave).not.toBeNull('button null');
