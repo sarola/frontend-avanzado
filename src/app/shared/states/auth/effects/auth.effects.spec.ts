@@ -60,29 +60,28 @@ describe('AuthEffects', () => {
             const token = {token: 'tokenPrueba'};
             const action = new fromActions.Identification(user);
             const outcome = new fromActions.IdentificationSuccess(token);
-            const entrada = true as any;
             actions = hot('-a', {a: action});
-            const response = cold ('-a|', {a: user});
+            const response = cold ('-a|', {a: token});
             const expected = cold('--b', {b: outcome});
+            authService.login.and.returnValue(response);
+
+             expect(effects.login$).toBeObservable(expected);
+
+
+        });
+        it('loginFailed$', () => {
+            const user = {email: 'mail@mail.com', password: 'password'};
+            const error = new Error('error') as any;
+            const action = new fromActions.Identification(user);
+            const outcome = new fromActions.IdentificationFailed(error);
+            actions = hot('-a', {a: action});
+            const response = cold ('-#|',{}, error);
+            const expected = cold('--(b|', {b: outcome});
             authService.login.and.returnValue(response);
 
             // expect(effects.login$).toBeObservable(expected);
 
 
-            // const completion = new fromActions.IdentificationSuccess({token: 'tokenPrueba'});
-            // const expected = cold('--b', { b: completion });
-            // actions = hot('--a-', { a: action });
-            // expect(effects.login$).toBeObservable(expected);
-            // const loginToReturn = true;
-            //
-            // authService.login.and.returnValue(of(loginToReturn));
-            //
-            // const expectedResult = fromActions.IdentificationSuccess(loginToReturn);
-            //
-            //
-            // postsEffects.get$.subscribe(result => {
-            //     expect(result).toEqual(expectedResult);
-            // });
         });
     });
 

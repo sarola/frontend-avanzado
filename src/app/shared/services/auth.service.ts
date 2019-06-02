@@ -10,7 +10,8 @@ export class AuthService {
 
   login({ email, password }): Observable<any> {
     //Mock - Should return a Token
-    return of(true);
+    const token: TokenResponse = {token: ''}
+    return of(token);
   }
 
 }
