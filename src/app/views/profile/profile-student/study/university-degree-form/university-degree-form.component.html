@@ -1,0 +1,47 @@
+<form fxFlex fxLayout="column" [formGroup]="rForm" (submit)="submit()">
+
+
+
+
+  <mat-form-field class="input">
+    <input matInput placeholder="Centro educativo" id="institution"
+           formControlName="institution"
+           class="form-control" required
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.name.errors
+            }">
+    <mat-error *ngIf="rForm.controls.institution.errors">El centro educativo es obligatorio</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field class="input">
+  <input matInput placeholder="Título" id="title"
+           formControlName="title"
+           class="form-control" required
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.title.errors
+            }">
+    <mat-error *ngIf="rForm.controls.title.errors">El título es obligatorio</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <input required matInput [matDatepicker]="picker" placeholder="Fecha de obtención del título" formControlName="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="rForm.controls.date.errors">Debes indicar una fecha válida</mat-error>
+  </mat-form-field>
+
+
+
+  <mat-checkbox formControlName="bilingue" id="bilingue">Bilingüe</mat-checkbox>
+
+
+
+  <div fxFlex fxLayout="row" fxFlexAlign="center">
+    <button mat-raised-button color="primary" type="submit" [disabled]="rForm.invalid">
+      Guardar
+    </button>
+  </div>
+
+</form>

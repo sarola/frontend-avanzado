@@ -1,0 +1,124 @@
+<form fxFlex fxLayout="column" [formGroup]="rForm" (submit)="save()">
+  <h2>Modificar perfil</h2>
+
+  <mat-form-field hintLabel="Min 3 caracteres / Max 55" class="input">
+    <input matInput placeholder="Nombre" id="name"
+           formControlName="name"
+           class="form-control" required
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.name.errors
+            }">
+    <mat-error *ngIf="rForm.controls.name.errors">Hay un error en el formato del nombre</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Min 3 caracteres / Max 55" class="input">
+    <input matInput placeholder="Apellidos" id="surname"
+           formControlName="surname"
+           class="form-control" required
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.surname.errors
+            }">
+    <mat-error *ngIf="rForm.controls.surname.errors">Hay un error en el formato del apellido</mat-error>
+
+  </mat-form-field>
+  <mat-form-field>
+    <input required matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="birthdate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="rForm.controls.birthdate.errors">Debes indicar una fecha de nacimiento válida</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <input matInput placeholder="Teléfono" id="phone"
+           formControlName="phone"
+           class="form-control" required
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.phone.errors
+            }">
+    <mat-error *ngIf="rForm.controls.phone.errors">Hay un error en el formato del teléfono</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <input matInput placeholder="Teléfono 2" id="phone2"
+           formControlName="phone2"
+           class="form-control"
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.phone2.errors
+            }">
+    <mat-error *ngIf="rForm.controls.phone2.errors">Hay un error en el formato del teléfono</mat-error>
+
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Tipo de documento</mat-label>
+    <mat-select [compareWith]="compareByUID" required formControlName="documentType" id="documentType" name="documentType">
+      <mat-option *ngFor="let documentType of documentsType" [value]="documentType">
+        {{documentType.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <input matInput placeholder="Número de documento" id="documentNumber"
+           formControlName="documentNumber" name="documentNumber"
+           class="form-control" required
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.documentNumber.errors
+            }">
+    <mat-error *ngIf="rForm.controls.documentNumber.errors">Hay un error en el formato del número del documento</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Provincia</mat-label>
+    <mat-select [compareWith]="compareByUID" required formControlName="province" id="province" name="province">
+      <mat-option *ngFor="let province of provinces" [value]="province">
+        {{province.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="rForm.controls.province.errors">La provincia es obligatoria</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Municipio</mat-label>
+    <mat-select [compareWith]="compareByUID" required formControlName="municipe" id="municipe" name="municipe">
+      <mat-option>--</mat-option>
+
+      <mat-option *ngFor="let municipe of municipes" [value]="municipe">
+        {{municipe.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="textarea">
+    <textarea matInput placeholder="Acerca de mi" id="aboutMe"
+           formControlName="aboutMe" name="aboutMe"
+           class="form-control"
+          >
+    </textarea>
+  </mat-form-field>
+
+  <mat-form-field class="textarea">
+    <textarea matInput placeholder="Otras competencias" id="otherCompetences"
+              formControlName="otherCompetences" name="otherCompetences"
+              class="form-control"
+    >
+    </textarea>
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <input matInput placeholder="Licencias" id="licences"
+              formControlName="license" name="licences"
+              class="form-control"
+    >
+  </mat-form-field>
+
+  <div fxFlex fxLayout="row" fxFlexAlign="center">
+   <button mat-raised-button color="primary" type="submit" [disabled]="rForm.invalid">
+
+  Guardar
+  </button>
+  </div>
+
+</form>

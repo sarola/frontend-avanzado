@@ -1,0 +1,63 @@
+<h3>
+  {{offer.job.name + " en " + offer.province.name}}
+</h3>
+
+<div fxLayout="column" class="pl15">
+  <mat-list>
+    <mat-list-item> <p matLine class="titulo-detalle" >Empresa: </p><p matLine class="texto-detalle">{{offer.company.name}}</p> </mat-list-item>
+    <mat-list-item> <p matLine class="titulo-detalle" >Puesto:</p> <p matLine class="texto-detalle">{{offer.job.name}}</p> </mat-list-item>
+    <mat-list-item> <p matLine class="titulo-detalle" >Provincia:</p> <p matLine class="texto-detalle">{{offer.province.name}}</p> </mat-list-item>
+    <mat-list-item> <p matLine class="titulo-detalle" >Municipio:</p> <p matLine class="texto-detalle">{{offer.municipe.name}} </p></mat-list-item>
+    <mat-list-item> <p matLine class="titulo-detalle" >Fecha: </p><p matLine class="texto-detalle">{{offer.date | date: 'dd-MM-yyyy'}} </p></mat-list-item>
+    <mat-list-item> <p matLine class="titulo-detalle" >Categoría:</p> <p matLine class="texto-detalle">{{offer.category.name}} </p></mat-list-item>
+    <mat-list-item> <p matLine class="titulo-detalle wrap" >Títulos:</p>
+      <!--<ul>-->
+        <p matLine class="texto-detalle" *ngFor="let title of offer.title"> {{title.name}} </p>
+      <!--</ul>-->
+    </mat-list-item>
+  </mat-list>
+  <div fxFlex fxLayoutAlign="center" class="mb-3em mt-3em">
+  <button mat-raised-button color="primary" *ngIf="!isSubscribe()" (click)="subscribe()">Inscribirme</button>
+  <button  mat-raised-button color="warn" *ngIf="isSubscribe()" (click)="unsubscribe()">Eliminar oferta</button>
+  </div>
+
+</div>
+
+
+<!--},-->
+<!--"job": {-->
+<!--"name": "Programador Jr Java",-->
+<!--"description": "Programación y prueba unitaria en Java"-->
+<!--},-->
+<!--"province": {-->
+<!--"uid": 1,-->
+<!--"name": "Málaga"-->
+<!--},-->
+<!--"municipe": {-->
+<!--"uid": 7,-->
+<!--"name": "Estepona"-->
+<!--},-->
+<!--"date": null,-->
+<!--"category": {-->
+<!--"uid": 2,-->
+<!--"name": "Informática y Comunicaciones"-->
+<!--},-->
+<!--"title": [-->
+<!--{-->
+<!--"uid": 1,-->
+<!--"name": "Desarrollo Aplicaciones Web"-->
+<!--},-->
+<!--{-->
+<!--"uid": 4,-->
+<!--"name": "Desarrollo Aplicaciones Multiplataforma"-->
+<!--}-->
+<!--]-->
+
+<!--<pre>{{ offer | json }} </pre>-->
+
+<!--<button *ngIf="!isSubscribe()" class="btn btn-primary" (click)="subscribe()">-->
+  <!--Inscribirse-->
+<!--</button>-->
+<!--<button *ngIf="isSubscribe()" class="btn btn-danger" (click)="unsubscribe()">-->
+  <!--Eliminar oferta-->
+<!--</button>-->
