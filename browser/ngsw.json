@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1560508740022,
+  "timestamp": 1560509484011,
   "index": "sarola.github.io/frontend-avanzado/index.html",
   "assetGroups": [
     {
@@ -69,7 +69,7 @@
     "sarola.github.io/frontend-avanzado/assets/img/uoc_logo.png": "a8268228316a687fc11a0ecbedb2507aedcccf39",
     "sarola.github.io/frontend-avanzado/common.221976eeab2b39e8f477.js": "fe2d87c36b607b545cae268a01fe39955ceed0de",
     "sarola.github.io/frontend-avanzado/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "sarola.github.io/frontend-avanzado/index.html": "c1c1ac06203c45604a5d72c97ac7f8ded556a3e9",
+    "sarola.github.io/frontend-avanzado/index.html": "0683289469e0d6d74f32d0a4901d1510d5d4b31f",
     "sarola.github.io/frontend-avanzado/main.bc8d5618fc492b96196d.js": "ad2b8b8da910a5779a740a7595199d576d7d6d86",
     "sarola.github.io/frontend-avanzado/polyfills.dc1819378955ea321dda.js": "ad54388e3f78ff96aaa4c3808b17569aa45c16c4",
     "sarola.github.io/frontend-avanzado/runtime.d73c4bf38a362d879af6.js": "fef62cdfbe542ddd6c50ac6c336032607f1f74bc",
