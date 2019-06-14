@@ -1,0 +1,96 @@
+{
+  "configVersion": 1,
+  "timestamp": 1560508740022,
+  "index": "sarola.github.io/frontend-avanzado/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "sarola.github.io/frontend-avanzado/10.134ec870da3acf496d7d.js",
+        "sarola.github.io/frontend-avanzado/11.8b0bf9b6d0d3dd233a1b.js",
+        "sarola.github.io/frontend-avanzado/5.4a6f6f716abb873323a2.js",
+        "sarola.github.io/frontend-avanzado/6.48d5ae01d7eb89aa25b0.js",
+        "sarola.github.io/frontend-avanzado/7.6edf8c225f078ef569d5.js",
+        "sarola.github.io/frontend-avanzado/8.8d633f90e690a3b16d6e.js",
+        "sarola.github.io/frontend-avanzado/9.0b97c5bb32e851f4c3b6.js",
+        "sarola.github.io/frontend-avanzado/common.221976eeab2b39e8f477.js",
+        "sarola.github.io/frontend-avanzado/favicon.ico",
+        "sarola.github.io/frontend-avanzado/index.html",
+        "sarola.github.io/frontend-avanzado/main.bc8d5618fc492b96196d.js",
+        "sarola.github.io/frontend-avanzado/polyfills.dc1819378955ea321dda.js",
+        "sarola.github.io/frontend-avanzado/runtime.d73c4bf38a362d879af6.js",
+        "sarola.github.io/frontend-avanzado/styles.65d1743b0fdcffb6ad9c.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "sarola.github.io/frontend-avanzado/Fontin_Sans_R.6447e60e69e9362ccc05.otf",
+        "sarola.github.io/frontend-avanzado/assets/fonts/FontinSans/Fontin_Sans_R.otf",
+        "sarola.github.io/frontend-avanzado/assets/icons/icon-128x128.png",
+        "sarola.github.io/frontend-avanzado/assets/icons/icon-144x144.png",
+        "sarola.github.io/frontend-avanzado/assets/icons/icon-152x152.png",
+        "sarola.github.io/frontend-avanzado/assets/icons/icon-192x192.png",
+        "sarola.github.io/frontend-avanzado/assets/icons/icon-384x384.png",
+        "sarola.github.io/frontend-avanzado/assets/icons/icon-512x512.png",
+        "sarola.github.io/frontend-avanzado/assets/icons/icon-72x72.png",
+        "sarola.github.io/frontend-avanzado/assets/icons/icon-96x96.png",
+        "sarola.github.io/frontend-avanzado/assets/img/perfil.png",
+        "sarola.github.io/frontend-avanzado/assets/img/uoc_logo.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "sarola.github.io/frontend-avanzado/10.134ec870da3acf496d7d.js": "1a76d2d90a523c4ee1072e47ceca65acb7b832ac",
+    "sarola.github.io/frontend-avanzado/11.8b0bf9b6d0d3dd233a1b.js": "7ba07dc5d876388f2a4d707e59f6dc44a0da900d",
+    "sarola.github.io/frontend-avanzado/5.4a6f6f716abb873323a2.js": "13b96d87cd43c48628d664a7f8b6a12b224cc899",
+    "sarola.github.io/frontend-avanzado/6.48d5ae01d7eb89aa25b0.js": "ff9d1313654ac1651800c22c034f46852a3594d7",
+    "sarola.github.io/frontend-avanzado/7.6edf8c225f078ef569d5.js": "c2947da2cd339dbbc377313b78a44786380f0d91",
+    "sarola.github.io/frontend-avanzado/8.8d633f90e690a3b16d6e.js": "1187fdd81172e8daf995cbf1f5a2439920c40c96",
+    "sarola.github.io/frontend-avanzado/9.0b97c5bb32e851f4c3b6.js": "4d0b20dee526ad40396933d063295f8a901085dc",
+    "sarola.github.io/frontend-avanzado/Fontin_Sans_R.6447e60e69e9362ccc05.otf": "d2e2a88fd29e66fd71bd935877a5462c97a98c94",
+    "sarola.github.io/frontend-avanzado/assets/fonts/FontinSans/Fontin_Sans_R.otf": "d2e2a88fd29e66fd71bd935877a5462c97a98c94",
+    "sarola.github.io/frontend-avanzado/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "sarola.github.io/frontend-avanzado/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "sarola.github.io/frontend-avanzado/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "sarola.github.io/frontend-avanzado/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "sarola.github.io/frontend-avanzado/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "sarola.github.io/frontend-avanzado/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "sarola.github.io/frontend-avanzado/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "sarola.github.io/frontend-avanzado/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "sarola.github.io/frontend-avanzado/assets/img/perfil.png": "c34d68aa614df190342bf4ccfb05fabce3561034",
+    "sarola.github.io/frontend-avanzado/assets/img/uoc_logo.png": "a8268228316a687fc11a0ecbedb2507aedcccf39",
+    "sarola.github.io/frontend-avanzado/common.221976eeab2b39e8f477.js": "fe2d87c36b607b545cae268a01fe39955ceed0de",
+    "sarola.github.io/frontend-avanzado/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "sarola.github.io/frontend-avanzado/index.html": "c1c1ac06203c45604a5d72c97ac7f8ded556a3e9",
+    "sarola.github.io/frontend-avanzado/main.bc8d5618fc492b96196d.js": "ad2b8b8da910a5779a740a7595199d576d7d6d86",
+    "sarola.github.io/frontend-avanzado/polyfills.dc1819378955ea321dda.js": "ad54388e3f78ff96aaa4c3808b17569aa45c16c4",
+    "sarola.github.io/frontend-avanzado/runtime.d73c4bf38a362d879af6.js": "fef62cdfbe542ddd6c50ac6c336032607f1f74bc",
+    "sarola.github.io/frontend-avanzado/styles.65d1743b0fdcffb6ad9c.css": "c588c40c529e8c46c1fcf17a6841e22acd34999d"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
