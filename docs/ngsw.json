@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1560510996678,
+  "timestamp": 1560512619494,
   "index": "/frontend-avanzado/index.html",
   "assetGroups": [
     {
@@ -8,7 +8,7 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/frontend-avanzado/10.134ec870da3acf496d7d.js",
+        "/frontend-avanzado/10.dcb34731bef7bdf58072.js",
         "/frontend-avanzado/11.8b0bf9b6d0d3dd233a1b.js",
         "/frontend-avanzado/5.4a6f6f716abb873323a2.js",
         "/frontend-avanzado/6.48d5ae01d7eb89aa25b0.js",
@@ -20,7 +20,7 @@
         "/frontend-avanzado/index.html",
         "/frontend-avanzado/main.bc8d5618fc492b96196d.js",
         "/frontend-avanzado/polyfills.dc1819378955ea321dda.js",
-        "/frontend-avanzado/runtime.d73c4bf38a362d879af6.js",
+        "/frontend-avanzado/runtime.76be4d02b581f147be1f.js",
         "/frontend-avanzado/styles.65d1743b0fdcffb6ad9c.css"
       ],
       "patterns": []
@@ -48,7 +48,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/frontend-avanzado/10.134ec870da3acf496d7d.js": "1a76d2d90a523c4ee1072e47ceca65acb7b832ac",
+    "/frontend-avanzado/10.dcb34731bef7bdf58072.js": "15611cb9ad4adc3031a60a244c0deeb08303dd63",
     "/frontend-avanzado/11.8b0bf9b6d0d3dd233a1b.js": "7ba07dc5d876388f2a4d707e59f6dc44a0da900d",
     "/frontend-avanzado/5.4a6f6f716abb873323a2.js": "13b96d87cd43c48628d664a7f8b6a12b224cc899",
     "/frontend-avanzado/6.48d5ae01d7eb89aa25b0.js": "ff9d1313654ac1651800c22c034f46852a3594d7",
@@ -69,10 +69,10 @@
     "/frontend-avanzado/assets/img/uoc_logo.png": "a8268228316a687fc11a0ecbedb2507aedcccf39",
     "/frontend-avanzado/common.221976eeab2b39e8f477.js": "fe2d87c36b607b545cae268a01fe39955ceed0de",
     "/frontend-avanzado/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/frontend-avanzado/index.html": "92a8d36efde986f8245d71295338088354d66112",
+    "/frontend-avanzado/index.html": "93ff105fc5d7fc6acbfaf2abb06ec2ed2a0cb887",
     "/frontend-avanzado/main.bc8d5618fc492b96196d.js": "ad2b8b8da910a5779a740a7595199d576d7d6d86",
     "/frontend-avanzado/polyfills.dc1819378955ea321dda.js": "ad54388e3f78ff96aaa4c3808b17569aa45c16c4",
-    "/frontend-avanzado/runtime.d73c4bf38a362d879af6.js": "fef62cdfbe542ddd6c50ac6c336032607f1f74bc",
+    "/frontend-avanzado/runtime.76be4d02b581f147be1f.js": "414bef0a6916117c198a57b5dc6d62f2b576bb1b",
     "/frontend-avanzado/styles.65d1743b0fdcffb6ad9c.css": "c588c40c529e8c46c1fcf17a6841e22acd34999d"
   },
   "navigationUrls": [
