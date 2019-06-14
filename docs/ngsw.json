@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1560512619494,
+  "timestamp": 1560512902862,
   "index": "/frontend-avanzado/index.html",
   "assetGroups": [
     {
@@ -69,7 +69,7 @@
     "/frontend-avanzado/assets/img/uoc_logo.png": "a8268228316a687fc11a0ecbedb2507aedcccf39",
     "/frontend-avanzado/common.221976eeab2b39e8f477.js": "fe2d87c36b607b545cae268a01fe39955ceed0de",
     "/frontend-avanzado/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/frontend-avanzado/index.html": "93ff105fc5d7fc6acbfaf2abb06ec2ed2a0cb887",
+    "/frontend-avanzado/index.html": "5771ade413f8a52f01537574952226064c7c50de",
     "/frontend-avanzado/main.bc8d5618fc492b96196d.js": "ad2b8b8da910a5779a740a7595199d576d7d6d86",
     "/frontend-avanzado/polyfills.dc1819378955ea321dda.js": "ad54388e3f78ff96aaa4c3808b17569aa45c16c4",
     "/frontend-avanzado/runtime.76be4d02b581f147be1f.js": "414bef0a6916117c198a57b5dc6d62f2b576bb1b",
