@@ -27,6 +27,7 @@ import { NotificationsService } from './services/notifications.service';
 import { OffersService } from './services/offers.service';
 import { AuthService } from './services/auth.service';
 import { OffersEffects } from './states/offers';
+import {environment} from '../../environments/environment.prod';
 
 /* export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -64,7 +65,7 @@ export const CORE_SERVICES: Provider[] = [
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    StoreDevtoolsModule.instrument({ maxAge: 50 }),
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
     EffectsModule.forRoot([
       AppEffects,
       AuthEffects,

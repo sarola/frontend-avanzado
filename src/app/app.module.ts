@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './shared/core.module';
-import { RouterModule } from '@angular/router';
-import { rootRouterConfig } from './app-routing';
+import {PreloadAllModules, RouterModule} from '@angular/router';
+import {rootRouterConfig} from './app-routing';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeBackendService } from './shared/inmemory-db/fake-backend.service';
@@ -22,7 +22,7 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE');
   imports: [
     SharedModule,
     CoreModule,
-    RouterModule.forRoot(rootRouterConfig, { useHash: false }),
+    RouterModule.forRoot(rootRouterConfig, { preloadingStrategy: PreloadAllModules  }),
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(FakeBackendService, {
       dataEncapsulation: false
@@ -35,7 +35,8 @@ export const NGRX_STATE = makeStateKey('NGRX_STATE');
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     //HeaderComponent
   ],
-  declarations: [AppComponent, ],
+  exports: [RouterModule],
+  declarations: [AppComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
@@ -60,9 +61,8 @@ export class AppModule {
 
     this.transferState.onSerialize(NGRX_STATE, () => {
       let state;
-      console.log('onserver');
       this.store.subscribe(  (saveState: any)  => {
-        console.log('Set for browser', JSON.stringify(saveState));
+        //console.log('Set for browser', JSON.stringify(saveState));
         state = saveState;
       }).unsubscribe();
 
@@ -72,12 +72,10 @@ export class AppModule {
 
   onBrowser() {
     const state = this.transferState.get<any>(NGRX_STATE, null);
-    console.log('onbrowser');
-    console.log(state);
-
+ 
     this.transferState.remove(NGRX_STATE);
     this.store.dispatch( { type: 'SET_ROOT_STATE', payload: state } );
-    console.log('Got state from server', JSON.stringify(state));
+    //console.log('Got state from server', JSON.stringify(state));
   }
 
 }
