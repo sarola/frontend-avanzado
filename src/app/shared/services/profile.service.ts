@@ -51,6 +51,8 @@ export class ProfileService {
     uid: string;
     hash: string;
   }): Observable<boolean> {
+
+
     return this.http.post<boolean>(
       AppSettings.API_ENDPOINT_CONFIRM_USER,
       uidAndHash

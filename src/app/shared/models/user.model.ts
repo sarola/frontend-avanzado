@@ -47,7 +47,10 @@ export interface User {
   offers: Offer[];
 }
 
+
 export function createNewUser(user?: User): User {
+
+
   return {
     ...user,
     name: '',

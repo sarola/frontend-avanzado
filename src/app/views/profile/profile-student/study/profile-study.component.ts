@@ -80,6 +80,14 @@ export class ProfileStudyComponent implements OnChanges {
   public isNew(): boolean {
     return !!!this.study;
   }
+  // public isSelectVocational(value): boolean {
+  //   return value && value.uid === MockData.TYPE_STUDIES[0].uid;
+  // }
+  // public isSelectUniversity(value): boolean {
+  //   return value && value.uid === MockData.TYPE_STUDIES[1].uid;
+  // }
+
+
   public isSelectVocational(): boolean {
     const value = this.rForm.get('option').value;
     return value && value.uid === MockData.TYPE_STUDIES[0].uid;
