@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
-  Study,
+  VocationalStudy,
   Institution,
   Category,
   TitleStudy,
@@ -23,8 +23,8 @@ import { dateValidator } from '../../../../../shared/directives/date-validator.d
   templateUrl: './vocational-form.component.html'
 })
 export class VocationalFormComponent implements OnInit, OnChanges {
-  @Output() onSave: EventEmitter<Study> = new EventEmitter();
-  @Input() study: Study = {} as Study;
+  @Output() onSave: EventEmitter<VocationalStudy> = new EventEmitter();
+  @Input() study: VocationalStudy = {} as VocationalStudy;
   public institutions: Institution[];
   public categories: Category[];
   public titles: TitleStudy[];
@@ -37,7 +37,7 @@ export class VocationalFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    let study = {} as Study;
+    let study = {} as VocationalStudy;
     if (this.hasChangeStudy(changes.study)) {
       study = changes.study.currentValue;
     }
@@ -54,7 +54,7 @@ export class VocationalFormComponent implements OnInit, OnChanges {
     this.grades = MockData.VOCATIONAL_GRADES;
   }
 
-  public loadFormInstance(study: Study): void {
+  public loadFormInstance(study: VocationalStudy): void {
     this.rForm = new FormGroup({
       institution: new FormControl(study.institution, [Validators.required]),
       category: new FormControl(study.category, [Validators.required]),
@@ -87,7 +87,7 @@ export class VocationalFormComponent implements OnInit, OnChanges {
     return grade1.uid === (grade2 && grade2.uid);
   }
   public save() {
-    const study: Study = {
+    const study: VocationalStudy = {
       certificate: false,
       ...this.rForm.value
     };

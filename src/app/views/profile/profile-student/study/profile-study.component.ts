@@ -8,7 +8,9 @@ import {
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {
-  Study
+  Study,
+  VocationalStudy,
+  CollegeStudy
 } from '../../../../shared/models/study.model';
 import { MockData } from '../../../../shared/mock-data';
 import { User } from '../../../../shared/models/user.model';
@@ -19,7 +21,7 @@ import { User } from '../../../../shared/models/user.model';
   styleUrls: ['./profile-study.component.scss']
 })
 export class ProfileStudyComponent implements OnChanges {
-  @Input() study: Study;
+  @Input() study: VocationalStudy | CollegeStudy;
   @Input() user: User;
   @Output() save: EventEmitter<User> = new EventEmitter();
   @Output() update: EventEmitter<User> = new EventEmitter();
@@ -49,7 +51,7 @@ export class ProfileStudyComponent implements OnChanges {
   private _update(study: Study) {
     const studies = this.user.studies.map(_study =>
       _study.uid === study.uid ? study : _study
-    ) as Study[];
+    ) as (VocationalStudy | CollegeStudy)[];
     const user = {
       ...this.user,
       studies
@@ -59,7 +61,8 @@ export class ProfileStudyComponent implements OnChanges {
   private _save(study: Study) {
     const _study = MockData.fakeIncreaseID<Study>(this.user.studies, study);
     const studies = [...this.user.studies, _study] as (
-        Study)[];
+      | VocationalStudy
+      | CollegeStudy)[];
     const user = {
       ...this.user,
       studies
@@ -67,7 +70,7 @@ export class ProfileStudyComponent implements OnChanges {
     this.save.emit(user);
   }
 
-  saveOrUpdate(_study: Study) {
+  saveOrUpdate(_study: VocationalStudy | CollegeStudy) {
     const study = {
       ..._study,
       level: this.rForm.get('option').value
@@ -77,6 +80,13 @@ export class ProfileStudyComponent implements OnChanges {
   public isNew(): boolean {
     return !!!this.study;
   }
+  // public isSelectVocational(value): boolean {
+  //   return value && value.uid === MockData.TYPE_STUDIES[0].uid;
+  // }
+  // public isSelectUniversity(value): boolean {
+  //   return value && value.uid === MockData.TYPE_STUDIES[1].uid;
+  // }
+
 
   public isSelectVocational(): boolean {
     const value = this.rForm.get('option').value;

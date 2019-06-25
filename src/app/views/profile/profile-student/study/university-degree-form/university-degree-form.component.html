@@ -1,10 +1,16 @@
 <form fxFlex fxLayout="column" [formGroup]="rForm" (submit)="submit()">
 
+
+
+
   <mat-form-field class="input">
     <input matInput placeholder="Centro educativo" id="institution"
            formControlName="institution"
            class="form-control" required
-           >
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.name.errors
+            }">
+    <mat-error *ngIf="rForm.controls.institution.errors">El centro educativo es obligatorio</mat-error>
 
   </mat-form-field>
 
@@ -12,7 +18,10 @@
   <input matInput placeholder="Título" id="title"
            formControlName="title"
            class="form-control" required
-          >
+           [ngClass]="{
+              'is-invalid': submitted && rForm.controls.title.errors
+            }">
+    <mat-error *ngIf="rForm.controls.title.errors">El título es obligatorio</mat-error>
 
   </mat-form-field>
 
