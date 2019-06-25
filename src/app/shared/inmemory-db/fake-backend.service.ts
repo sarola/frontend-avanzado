@@ -17,7 +17,7 @@ export class FakeBackendService implements InMemoryDbService {
         roles: ['student'],
         documentType: { uid: 1, name: 'NIF' },
         documentNumber: '26808956H',
-        license: 'B1',
+        license: '',
         aboutMe: 'LOREM IPSUM',
         otherCompetences: 'LOREM IPSUM',
         address: {
@@ -50,10 +50,7 @@ export class FakeBackendService implements InMemoryDbService {
           },
           {
             uid: 2,
-            institution: {
-              uid: 2,
-              name: 'IES Politécnico Jesús Marin'
-            },
+            institution: 'IES Politécnico Jesús Marin',
             category: { uid: 2, name: 'Informática y comunicaciones' },
             level: { uid: 1, name: 'Ciclo Formativo' },
             title: {

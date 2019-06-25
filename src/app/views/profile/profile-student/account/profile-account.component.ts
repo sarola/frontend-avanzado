@@ -10,10 +10,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MockData } from '../../../../shared/mock-data';
 import { dateValidator } from '../../../../shared/directives/date-validator.directive';
 import {
-  User,
-  DocumentType,
-  Municipe,
-  Province
+    User,
+    DocumentType,
+    Municipe,
+    Province, License
 } from '../../../../shared/models/user.model';
 import { documentNumberValidator } from '../../../../shared/directives/document-number-validator.directive';
 
@@ -32,6 +32,7 @@ export class ProfileAccountComponent implements OnInit, OnChanges {
   municipes: Municipe[];
   provinces: Province[];
   submitted = false;
+  licenses: License[];
 
   constructor() {}
   ngOnInit() {
@@ -45,6 +46,7 @@ export class ProfileAccountComponent implements OnInit, OnChanges {
     this.documentsType = MockData.DOCUMENTS_TYPE;
     this.municipes = MockData.MUNICIPES;
     this.provinces = MockData.PROVINCES;
+    this.licenses = MockData.LICENSES;
   }
 
   public loadFormInstance(): void {

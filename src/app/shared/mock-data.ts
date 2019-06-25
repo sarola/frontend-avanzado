@@ -69,6 +69,15 @@ export class MockData {
     { uid: 4, name: 'Cádiz' },
     { uid: 5, name: 'Granada' }
   ];
+  public static readonly LICENSES = [
+    { uid: 1, name: 'B1' },
+    { uid: 2, name: 'AM' },
+    { uid: 3, name: 'A1' },
+    { uid: 4, name: 'A2' },
+    { uid: 5, name: 'C1' },
+    { uid: 4, name: 'D1' },
+
+  ];
 
   public static fakeIncreaseID<T>(collection, object: T): T {
     const _object = { ...object };

@@ -5,20 +5,24 @@ export class Study {
   certificate: boolean; //Sera un fichero
   date: Date;
   bilingue: boolean;
-}
-
-export class CollegeStudy extends Study {
-  name: string;
-  institution: String;
-}
-
-export class VocationalStudy extends Study {
+  institution: string;
   category: Category;
   grade: Grade;
   dual: boolean;
-
-  institution: Institution;
 }
+//
+// export class CollegeStudy extends Study {
+//   name: string;
+//   institution: String;
+// }
+//
+// export class VocationalStudy extends Study {
+//   category: Category;
+//   grade: Grade;
+//   dual: boolean;
+//
+//   institution: Institution;
+// }
 
 export class Institution {
   uid: number;

@@ -8,7 +8,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CollegeStudy } from '../../../../../shared/models/study.model';
+import { Study } from '../../../../../shared/models/study.model';
 import { dateValidator } from '../../../../../shared/directives/date-validator.directive';
 
 @Component({
@@ -16,8 +16,8 @@ import { dateValidator } from '../../../../../shared/directives/date-validator.d
   templateUrl: './university-degree-form.component.html'
 })
 export class UniversityDegreeComponent implements OnInit, OnChanges {
-  @Output() onSave: EventEmitter<CollegeStudy> = new EventEmitter();
-  @Input() study: CollegeStudy = {} as CollegeStudy;
+  @Output() onSave: EventEmitter<Study> = new EventEmitter();
+  @Input() study: Study = {} as Study;
   public rForm: FormGroup;
   submitted = false;
   constructor() {}
@@ -25,7 +25,7 @@ export class UniversityDegreeComponent implements OnInit, OnChanges {
     this.loadSelectProperties();
   }
   ngOnChanges(changes: SimpleChanges) {
-    let study = {} as CollegeStudy;
+    let study = {} as Study;
     if (this.hasChangeStudy(changes.study)) {
       study = changes.study.currentValue;
     }
@@ -37,7 +37,7 @@ export class UniversityDegreeComponent implements OnInit, OnChanges {
 
   public loadSelectProperties(): void {}
 
-  public loadFormInstance(study: CollegeStudy): void {
+  public loadFormInstance(study: Study): void {
     this.rForm = new FormGroup({
       institution: new FormControl(study.institution, [Validators.required]),
       title: new FormControl(study.title, [Validators.required]),
@@ -52,7 +52,7 @@ export class UniversityDegreeComponent implements OnInit, OnChanges {
   }
 
   public save() {
-    const study: CollegeStudy = {
+    const study: Study = {
       certificate: false,
       ...this.rForm.value
     };
