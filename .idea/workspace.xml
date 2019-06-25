@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ccb2403-46e8-4ebb-b72f-4fab686a8275" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/inmemory-db/countries.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/shared/inmemory-db/fake-backend.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/inmemory-db/fake-backend.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/inmemory-db/inmemory-db.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/mock-data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/mock-data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/models/experience.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/models/experience.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/models/study.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/models/study.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/shared/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/shared/models/user.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/account/profile-account.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/account/profile-account.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/account/profile-account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/account/profile-account.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/profile-student.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/profile-student.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/profile-study.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/profile-study.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/university-degree-form/university-degree-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/university-degree-form/university-degree-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/university-degree-form/university-degree-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/university-degree-form/university-degree-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/vocational-form/vocational-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/views/profile/profile-student/study/vocational-form/vocational-form.component.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -51,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/shared/models/experience.model.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -120,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/shared/inmemory-db/fake-backend.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="52" column="54" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
+            <state relative-caret-position="119">
+              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
               <folding>
                 <element signature="e#0#62#0" expanded="true" />
               </folding>
@@ -221,10 +207,10 @@
         <option value="$PROJECT_DIR$/src/app/views/profile/profile-student/study/profile-study.component.ts" />
         <option value="$PROJECT_DIR$/src/app/views/profile/profile-student/study/vocational-form/vocational-form.component.ts" />
         <option value="$PROJECT_DIR$/src/app/views/profile/profile-student/study/university-degree-form/university-degree-form.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/shared/inmemory-db/fake-backend.service.ts" />
         <option value="$PROJECT_DIR$/src/app/shared/models/study.model.ts" />
         <option value="$PROJECT_DIR$/src/app/views/profile/profile-student/study/university-degree-form/university-degree-form.component.html" />
         <option value="$PROJECT_DIR$/src/app/shared/models/experience.model.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/inmemory-db/fake-backend.service.ts" />
       </list>
     </option>
   </component>
@@ -453,12 +439,12 @@
       <workItem from="1560598596914" duration="6921000" />
       <workItem from="1560768060853" duration="3873000" />
       <workItem from="1560879285569" duration="31508000" />
-      <workItem from="1561472868008" duration="6787000" />
+      <workItem from="1561472868008" duration="7182000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106224000" />
+    <option name="totallyTimeSpent" value="106619000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1488" height="878" extended-state="6" />
@@ -821,16 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/shared/inmemory-db/fake-backend.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="52" column="54" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/views/profile/profile-student/study/university-degree-form/university-degree-form.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -871,8 +847,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/shared/models/experience.model.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/shared/inmemory-db/fake-backend.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
